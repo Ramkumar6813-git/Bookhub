@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
+import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -21,7 +22,14 @@ import {
   BookCoverPic,
   BookTitle,
   BookAuthor,
+  Footer,
+  SocialMediaLinks,
+  Contact,
   LoaderContainer,
+  FailureContainer,
+  FailureImage,
+  FailureInfo,
+  TryAgainButton,
 } from './styledComponents'
 
 const apiConstants = {
@@ -56,11 +64,11 @@ class Home extends Component {
       options,
     )
     const data = await response.json()
-    const updatedData = data.books.map(eachData => ({
-      authorName: eachData.author_name,
-      coverPic: eachData.cover_pic,
-      id: eachData.id,
-      title: eachData.title,
+    const updatedData = data.books.map(book => ({
+      authorName: book.author_name,
+      coverPic: book.cover_pic,
+      id: book.id,
+      title: book.title,
     }))
     if (response.ok === true) {
       this.setState({
@@ -83,9 +91,39 @@ class Home extends Component {
   renderTopRatedBooks = () => {
     const {apiData} = this.state
     const settings = {
-      dots: true,
-      slidesToShow: 3,
+      dots: false,
+      slidesToShow: 2,
       slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1440,
+          settings: {
+            slidesToShow: 6,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     }
     return (
       <SlidesList>
@@ -105,14 +143,14 @@ class Home extends Component {
   }
 
   renderFailureView = () => (
-    <div>
-      <img
+    <FailureContainer>
+      <FailureImage
         src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
         alt="failure"
       />
-      <p>Something went wrong. Please try again</p>
-      <button type="button">Try Again</button>
-    </div>
+      <FailureInfo>Something went wrong. Please try again</FailureInfo>
+      <TryAgainButton type="button">Try Again</TryAgainButton>
+    </FailureContainer>
   )
 
   renderBooksBasedOnApiStatus = () => {
@@ -147,6 +185,15 @@ class Home extends Component {
             <SliderHeading>Top Rated Books</SliderHeading>
             {this.renderBooksBasedOnApiStatus()}
           </SliderContainer>
+          <Footer>
+            <SocialMediaLinks>
+              <FaGoogle size={20} />
+              <FaTwitter size={20} />
+              <FaInstagram size={20} />
+              <FaYoutube size={20} />
+            </SocialMediaLinks>
+            <Contact>Contact Us</Contact>
+          </Footer>
         </HomeBgContainer>
       </>
     )
