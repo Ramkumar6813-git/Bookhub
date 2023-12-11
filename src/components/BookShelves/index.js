@@ -1,6 +1,12 @@
 import {Component} from 'react'
 
-import {FaSearch} from 'react-icons/fa'
+import {
+  FaSearch,
+  FaGoogle,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+} from 'react-icons/fa'
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
@@ -18,6 +24,11 @@ import {
   BookShelvesButtonItem,
   BookShelvesButton,
   DisplayBooksSection,
+  LgDeviceSearchInputSection,
+  LgDeviceHeading,
+  LgBookSearchDiv,
+  LgSearchInput,
+  LgSearchButton,
   BooksList,
   BookItem,
   BookCoverPic,
@@ -26,6 +37,9 @@ import {
   BookAuthor,
   BookRating,
   BookStatus,
+  Footer,
+  SocialMediaLinks,
+  Contact,
 } from './styledComponents'
 
 const bookshelvesButtonsList = [
@@ -136,7 +150,7 @@ class BookShelves extends Component {
         <BookShelvesMainContainer>
           <TagLinksSection>
             <BookSearchDiv>
-              <SearchInput />
+              <SearchInput type="search" placeholder="Sea life" />
               <SearchButton>
                 <FaSearch size={18} />
               </SearchButton>
@@ -156,6 +170,15 @@ class BookShelves extends Component {
             </BookShelvesButtonsDiv>
           </TagLinksSection>
           <DisplayBooksSection>
+            <LgDeviceSearchInputSection>
+              <LgDeviceHeading>All Books</LgDeviceHeading>
+              <LgBookSearchDiv>
+                <LgSearchInput type="search" placeholder="Sea life" />
+                <LgSearchButton>
+                  <FaSearch size={18} />
+                </LgSearchButton>
+              </LgBookSearchDiv>
+            </LgDeviceSearchInputSection>
             <BooksList>
               {booksList.map(eachBook => (
                 <BookItem key={eachBook.id}>
@@ -171,6 +194,15 @@ class BookShelves extends Component {
             </BooksList>
           </DisplayBooksSection>
         </BookShelvesMainContainer>
+        <Footer>
+          <SocialMediaLinks>
+            <FaGoogle size={20} />
+            <FaTwitter size={20} />
+            <FaInstagram size={20} />
+            <FaYoutube size={20} />
+          </SocialMediaLinks>
+          <Contact>Contact Us</Contact>
+        </Footer>
       </BookShelvesBgContainer>
     )
   }

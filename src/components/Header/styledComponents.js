@@ -9,6 +9,12 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  background-color: #fff;
+  @media (min-width: 768px) {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+  }
 `
 export const WebsiteLogo = styled.img``
 export const Button = styled.button`

@@ -2,6 +2,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import LoginForm from './components/Login'
 import Home from './components/Home'
 import BookShelves from './components/BookShelves'
+import BookDetails from './components/BookDetails'
+
 import './App.css'
 
 // use the below bookshelvesList for rendering read status of book items in Bookshelves Route
@@ -32,7 +34,7 @@ const bookshelvesList = [
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={BookShelves} />
+      <Route exact path="/" component={BookDetails} />
       <Route exact path="/login" component={LoginForm} />
     </Switch>
   </BrowserRouter>
