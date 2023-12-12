@@ -6,6 +6,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaYoutube,
+  FaStar,
 } from 'react-icons/fa'
 import Cookies from 'js-cookie'
 
@@ -36,7 +37,9 @@ import {
   BookTitle,
   BookAuthor,
   BookRating,
+  Star,
   BookStatus,
+  BookStatusText,
   Footer,
   SocialMediaLinks,
   Contact,
@@ -150,7 +153,7 @@ class BookShelves extends Component {
         <BookShelvesMainContainer>
           <TagLinksSection>
             <BookSearchDiv>
-              <SearchInput type="search" placeholder="Sea life" />
+              <SearchInput type="search" placeholder="Search" />
               <SearchButton>
                 <FaSearch size={18} />
               </SearchButton>
@@ -186,8 +189,17 @@ class BookShelves extends Component {
                   <BookDetailsSection>
                     <BookTitle>{eachBook.title}</BookTitle>
                     <BookAuthor>{eachBook.authorName}</BookAuthor>
-                    <BookRating>Avg Rating {eachBook.rating}</BookRating>
-                    <BookStatus>Status: {eachBook.readStatus}</BookStatus>
+                    <BookRating>
+                      Avg Rating{' '}
+                      <Star>
+                        <FaStar />
+                      </Star>
+                      {eachBook.rating}
+                    </BookRating>
+                    <BookStatus>
+                      Status :{' '}
+                      <BookStatusText>{eachBook.readStatus}</BookStatusText>
+                    </BookStatus>
                   </BookDetailsSection>
                 </BookItem>
               ))}

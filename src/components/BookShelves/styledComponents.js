@@ -24,11 +24,10 @@ export const BookSearchDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid red;
+  border: 2px solid #cbd5e1;
   width: 80%;
   max-width: 350px;
-  border-radius: 3px;
-
+  border-radius: 4px;
   @media (min-width: 768px) {
     display: none;
   }
@@ -40,8 +39,9 @@ export const SearchInput = styled.input`
   border: none;
   border-radius: 3px;
   width: 100%;
-  padding: 0 15px 0 15px;
+  padding: 3px 15px;
   font-size: 15px;
+  color: #94a3b8;
 `
 
 export const SearchButton = styled.button`
@@ -53,6 +53,7 @@ export const SearchButton = styled.button`
   align-items: center;
   border: none;
   border-radius: 3px;
+  color: #94a3b8;
 `
 
 export const BookShelvesButtonsDiv = styled.div`
@@ -68,6 +69,7 @@ export const BookShelvesButtonsDiv = styled.div`
 export const Heading = styled.h1`
   font-size: 18px;
   margin: 15px 0px;
+  color: #334155;
 `
 export const BookShelvesButtonsList = styled.ul`
   list-style-type: none;
@@ -80,11 +82,10 @@ export const BookShelvesButtonsList = styled.ul`
 `
 export const BookShelvesButtonItem = styled.li``
 export const BookShelvesButton = styled.button`
-  padding: 4px 20px;
+  padding: 5px 20px;
   border-radius: 16px;
   border: 1px solid blue;
-  margin-right: 10px;
-  margin-bottom: 15px;
+  margin: 0px 15px 10px 0px;
   background-color: transparent;
   border: 1px solid #0284c7;
   color: #0284c7;
@@ -95,7 +96,7 @@ export const BookShelvesButton = styled.button`
     padding: 0;
     text-align: left;
     margin: 5px 0px;
-    color: #000000;
+    color: #475569;
     font-weight: 500;
   }
 `
@@ -124,9 +125,10 @@ export const LgBookSearchDiv = styled.div`
   height: 35px;
   display: flex;
   max-width: 320px;
-  border: 1px solid red;
-  border-radius: 3px;
-
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #94a3b8;
   @media (max-width: 768px) {
     display: none;
   }
@@ -152,6 +154,7 @@ export const LgSearchButton = styled.button`
   border: none;
   border-radius: 3px;
   border-radius: 6px;
+  color: #94a3b8;
 `
 
 export const BooksList = styled.ul`
@@ -192,19 +195,34 @@ export const BookDetailsSection = styled.div`
   }
 `
 export const BookTitle = styled.h1`
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 8px;
+  color: #334155;
 `
 export const BookAuthor = styled.p`
   font-size: 14px;
   margin: 5px 0px;
+  color: #475569;
+  font-weight: 500;
 `
 export const BookRating = styled.p`
   font-size: 14px;
   margin: 5px 0px;
+  color: #475569;
+  font-weight: 500;
+`
+export const Star = styled.span`
+  padding: 0px 5px 0px 3px;
+  text-align: center;
+  color: #fbbf24;
 `
 export const BookStatus = styled.p`
   font-size: 14px;
+`
+export const BookStatusText = styled.span`
+  color: #0284c7;
+  font-size: 15px;
+  font-weight: 500;
 `
 export const Footer = styled.div`
   display: flex;
@@ -215,7 +233,7 @@ export const Footer = styled.div`
   margin-top: 30px;
   padding-bottom: 20px;
   @media (min-width: 768px) {
-    margin: 40px 0px 0 20vw;
+    margin: 40px 0px 30px 20vw;
     padding-bottom: 30px;
   }
 `

@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import LoginForm from './components/Login'
 import Home from './components/Home'
+import ProtectedRoute from './components/ProtectedRoute'
 import BookShelves from './components/BookShelves'
 import BookDetails from './components/BookDetails'
 
@@ -34,8 +35,8 @@ const bookshelvesList = [
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={BookDetails} />
       <Route exact path="/login" component={LoginForm} />
+      <ProtectedRoute exact path="/" component={BookShelves} />
     </Switch>
   </BrowserRouter>
 )

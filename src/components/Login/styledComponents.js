@@ -5,6 +5,7 @@ export const BgContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f8fafc;
   @media (min-width: 768px) {
   }
 `
@@ -14,7 +15,7 @@ export const LoginFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 322px;
+  width: 352px;
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -34,7 +35,6 @@ export const DisplayImageDesktop = styled.img`
   @media (max-width: 768px) {
     display: none;
   }
-
   width: 50vw;
   height: 100vh;
 `
@@ -43,11 +43,12 @@ export const Form = styled.form`
   flex-direction: column;
   width: 100%;
   @media (min-width: 768px) {
-    width: 322px;
+    width: 352px;
     margin: auto;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    padding: 25px;
+    background-color: #fff;
+    padding: 30px;
     border-radius: 8px;
+    box-shadow: 0 0 8px #e7eff0;
   }
 `
 export const WebsiteLogo = styled.img`
@@ -56,7 +57,7 @@ export const WebsiteLogo = styled.img`
 `
 
 export const InputContainer = styled.div`
-  height: 68px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,23 +65,40 @@ export const InputContainer = styled.div`
 `
 export const UsernameLabel = styled.label`
   font-size: 15px;
+  color: #5a7184;
+  font-weight: 500;
 `
 export const UsernameInput = styled.input`
-  padding: 9px 15px;
+  padding: 12px 15px;
   font-size: 16px;
   outline: none;
+  font-weight: 400;
+  color: #183b56;
+  border-radius: 5px;
+  border: 1.5px solid #c3cad9;
 `
 export const PasswordLabel = styled.label`
   font-size: 15px;
+  color: #5a7184;
+  font-weight: 500;
 `
 export const PasswordInput = styled.input`
-  padding: 9px 15px;
+  padding: 12px 15px;
   font-size: 16px;
   outline: none;
+  font-weight: 400;
+  color: #183b56;
+  border-radius: 5px;
+  border: 1.5px solid #c3cad9;
 `
 export const LoginButton = styled.button`
-  padding: 8px 0px;
-
+  padding: 9px 0px;
+  margin-top: 30px;
+  border-radius: 6px;
+  font-size: 15px;
+  border: none;
+  color: #fff;
+  background-color: #0284c7;
   @media (min-width: 768px) {
   }
 `

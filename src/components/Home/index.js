@@ -15,7 +15,9 @@ import {
   DescriptionText,
   FindBooksButton,
   SliderContainer,
+  SliderInfoDiv,
   SliderHeading,
+  LgFindBooksButton,
   SlidesList,
   SliderBookItem,
   SliderBookButton,
@@ -64,13 +66,13 @@ class Home extends Component {
       options,
     )
     const data = await response.json()
-    const updatedData = data.books.map(book => ({
-      authorName: book.author_name,
-      coverPic: book.cover_pic,
-      id: book.id,
-      title: book.title,
-    }))
     if (response.ok === true) {
+      const updatedData = data.books.map(book => ({
+        authorName: book.author_name,
+        coverPic: book.cover_pic,
+        id: book.id,
+        title: book.title,
+      }))
       this.setState({
         apiData: updatedData,
         apiStatus: apiConstants.success,
@@ -84,7 +86,7 @@ class Home extends Component {
 
   renderLoader = () => (
     <LoaderContainer>
-      <Loader type="TailSpin" color="#0284C7" height={50} width={50} />
+      <Loader type="TailSpin" color="#0284C7" height={30} width={30} />
     </LoaderContainer>
   )
 
@@ -98,7 +100,7 @@ class Home extends Component {
         {
           breakpoint: 1440,
           settings: {
-            slidesToShow: 6,
+            slidesToShow: 5,
             slidesToScroll: 1,
           },
         },
@@ -110,14 +112,15 @@ class Home extends Component {
           },
         },
         {
-          breakpoint: 600,
+          breakpoint: 992,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 1,
           },
         },
+
         {
-          breakpoint: 480,
+          breakpoint: 576,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
@@ -182,7 +185,10 @@ class Home extends Component {
             <FindBooksButton type="button">Find Books</FindBooksButton>
           </FindBooksDiv>
           <SliderContainer>
-            <SliderHeading>Top Rated Books</SliderHeading>
+            <SliderInfoDiv>
+              <SliderHeading>Top Rated Books</SliderHeading>
+              <LgFindBooksButton>Find Books</LgFindBooksButton>
+            </SliderInfoDiv>
             {this.renderBooksBasedOnApiStatus()}
           </SliderContainer>
           <Footer>
