@@ -30,3 +30,5 @@ const Footer = () => (
     }}
   </ThemeContext.Consumer>
 )
+
+export default Footer

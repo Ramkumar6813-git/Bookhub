@@ -3,6 +3,8 @@ import Cookies from 'js-cookie'
 import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
 import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
+import Footer from '../Footer'
+
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -27,7 +29,6 @@ import {
   BookCoverPic,
   BookTitle,
   BookAuthor,
-  Footer,
   SocialMediaLinks,
   Contact,
   LoaderContainer,
@@ -97,33 +98,27 @@ class Home extends Component {
     const {apiData} = this.state
     const settings = {
       dots: false,
-      slidesToShow: 2,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 5,
       slidesToScroll: 1,
       responsive: [
         {
-          breakpoint: 1440,
+          breakpoint: 1024,
           settings: {
             slidesToShow: 5,
             slidesToScroll: 1,
           },
         },
         {
-          breakpoint: 1024,
+          breakpoint: 600,
           settings: {
             slidesToShow: 4,
             slidesToScroll: 1,
           },
         },
         {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-
-        {
-          breakpoint: 576,
+          breakpoint: 480,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
@@ -136,13 +131,11 @@ class Home extends Component {
         {apiData.map(eachBookData => {
           const {id, coverPic, title, authorName} = eachBookData
           return (
-            <SliderBookItem key={id}>
-              <SliderBookButton type="button">
-                <BookCoverPic src={coverPic} alt="ss" />
-                <BookTitle>{title}</BookTitle>
-                <BookAuthor>{authorName}</BookAuthor>
-              </SliderBookButton>
-            </SliderBookItem>
+            <div className="slider-item" key={id}>
+              <img src={coverPic} className="book-cover-pic" alt="ss" />
+              <p className="book-title">{title}</p>
+              <p className="book-author">{authorName}</p>
+            </div>
           )
         })}
       </Slider>
@@ -205,15 +198,7 @@ class Home extends Component {
                     {this.renderBooksBasedOnApiStatus()}
                   </div>
                 </div>
-                <Footer>
-                  <SocialMediaLinks>
-                    <FaGoogle size={20} />
-                    <FaTwitter size={20} />
-                    <FaInstagram size={20} />
-                    <FaYoutube size={20} />
-                  </SocialMediaLinks>
-                  <Contact>Contact Us</Contact>
-                </Footer>
+                <Footer />
               </div>
             </>
           )
