@@ -5,6 +5,7 @@ export const BookShelvesBgContainer = styled.div`
   background-color: #f5f7fa;
   background-size: cover;
   min-height: 100vh;
+  margin-top: 60px;
 `
 export const BookShelvesMainContainer = styled.div`
   padding: 20px;
@@ -233,7 +234,7 @@ export const Footer = styled.div`
   margin-top: 30px;
   padding-bottom: 20px;
   @media (min-width: 768px) {
-    margin: 40px 0px 30px 20vw;
+    margin: 40px 0px 0px 20vw;
     padding-bottom: 30px;
   }
 `
