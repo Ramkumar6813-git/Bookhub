@@ -3,11 +3,14 @@ import Cookies from 'js-cookie'
 import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
 import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
-
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 import Header from '../Header'
+import ThemeContext from '../../context/ThemeContext'
+
+import './index.css'
+
 import {
   HomeBgContainer,
   FindBooksDiv,
@@ -129,19 +132,20 @@ class Home extends Component {
       ],
     }
     return (
-      <SlidesList>
-        <Slider {...settings}>
-          {apiData.map(eachBookData => (
-            <SliderBookItem key={eachBookData.id}>
+      <Slider {...settings}>
+        {apiData.map(eachBookData => {
+          const {id, coverPic, title, authorName} = eachBookData
+          return (
+            <SliderBookItem key={id}>
               <SliderBookButton type="button">
-                <BookCoverPic src={eachBookData.coverPic} alt="ss" />
-                <BookTitle>{eachBookData.title}</BookTitle>
-                <BookAuthor>{eachBookData.authorName}</BookAuthor>
+                <BookCoverPic src={coverPic} alt="ss" />
+                <BookTitle>{title}</BookTitle>
+                <BookAuthor>{authorName}</BookAuthor>
               </SliderBookButton>
             </SliderBookItem>
-          ))}
-        </Slider>
-      </SlidesList>
+          )
+        })}
+      </Slider>
     )
   }
 
@@ -172,36 +176,49 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        <Header />
-        <HomeBgContainer>
-          <FindBooksDiv>
-            <HeadingText>Find Your Next Favorite Books?</HeadingText>
-            <DescriptionText>
-              You are in the right place. Tell us what titles or genres you have
-              enjoyed in the past, and we will give you surprisingly insightful
-              recommendations.
-            </DescriptionText>
-            <FindBooksButton type="button">Find Books</FindBooksButton>
-          </FindBooksDiv>
-          <SliderContainer>
-            <SliderInfoDiv>
-              <SliderHeading>Top Rated Books</SliderHeading>
-              <LgFindBooksButton>Find Books</LgFindBooksButton>
-            </SliderInfoDiv>
-            {this.renderBooksBasedOnApiStatus()}
-          </SliderContainer>
-          <Footer>
-            <SocialMediaLinks>
-              <FaGoogle size={20} />
-              <FaTwitter size={20} />
-              <FaInstagram size={20} />
-              <FaYoutube size={20} />
-            </SocialMediaLinks>
-            <Contact>Contact Us</Contact>
-          </Footer>
-        </HomeBgContainer>
-      </>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <>
+              <Header />
+              <div className="home-container">
+                <div className="find-books-section">
+                  <h1 className="heading">Find Your Next Favorite Books?</h1>
+                  <p className="description">
+                    You are in the right place. Tell us what titles or genres
+                    you have enjoyed in the past, and we will give you
+                    surprisingly insightful recommendations.
+                  </p>
+                  <button type="button" className="find-books-button ">
+                    Find Books
+                  </button>
+                </div>
+                <div className="slider-div">
+                  <div className="slider-info-section">
+                    <h1 className="slider-head-text">Top Rated Books</h1>
+                    <button type="button" className="lg-device-find-button">
+                      Find Books
+                    </button>
+                  </div>
+                  <div className="slider-main-section">
+                    {this.renderBooksBasedOnApiStatus()}
+                  </div>
+                </div>
+                <Footer>
+                  <SocialMediaLinks>
+                    <FaGoogle size={20} />
+                    <FaTwitter size={20} />
+                    <FaInstagram size={20} />
+                    <FaYoutube size={20} />
+                  </SocialMediaLinks>
+                  <Contact>Contact Us</Contact>
+                </Footer>
+              </div>
+            </>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

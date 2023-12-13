@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 export const BookShelvesBgContainer = styled.div`
   background-color: #f5f7fa;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 90vh;
   margin-top: 60px;
 `
 export const BookShelvesMainContainer = styled.div`
@@ -231,10 +231,10 @@ export const Footer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
   padding-bottom: 20px;
   @media (min-width: 768px) {
-    margin: 40px 0px 0px 20vw;
+    margin: 30px 0px 0px 20vw;
     padding-bottom: 30px;
   }
 `
@@ -245,4 +245,49 @@ export const SocialMediaLinks = styled.div`
 `
 export const Contact = styled.p`
   margin-top: 10px;
+`
+
+export const LoaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 55vh;
+`
+export const FailureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  @media screen and (min-width: 768px) {
+    height: 55vh;
+    padding-top: 30px;
+  }
+`
+export const FailureImage = styled.img`
+  width: 230px;
+  height: 110px;
+  @media screen and (min-width: 768px) {
+    width: 270px;
+    height: 150px;
+  }
+`
+export const FailureInfo = styled.p`
+  margin: 15px 0px;
+  font-size: 16px;
+  color: #475569;
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
+    margin: 20px 0px;
+    font-size: 18px;
+  }
+`
+export const TryAgainButton = styled.button`
+  padding: 8px 16px;
+  color: #f8fafc;
+  background-color: #0284c7;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
 `

@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 export const HomeBgContainer = styled.div`
   background-color: #f5f7fa;
-  height: 89vh;
+  background-size: cover;
+  min-height: 90vh;
+  margin-top: 60px;
   @media (min-width: 768px) {
-    padding: 0 70px;
+    padding: 0 50px;
     margin-top: 65px;
   }
 `
@@ -49,7 +51,7 @@ export const SliderContainer = styled.div`
   background-color: #fff;
   height: 260px;
   @media screen and (min-width: 768px) {
-    height: 290px;
+    height: 300px;
     border-radius: 8px;
   }
 `
@@ -97,7 +99,7 @@ export const SliderBookButton = styled.button`
   outline: none;
   background-color: transparent;
   margin: auto;
-  width: 150px;
+  width: 140px;
   @media (min-width: 768px) {
     width: 170px;
   }
@@ -107,7 +109,7 @@ export const BookCoverPic = styled.img`
   height: 130px;
   border-radius: 5px;
   @media (min-width: 768px) {
-    height: 150px;
+    height: 160px;
   }
 `
 export const BookTitle = styled.p`
@@ -130,7 +132,7 @@ export const Footer = styled.div`
   text-align: center;
   margin-top: 40px;
   @media (min-width: 768px) {
-    margin-top: 50px;
+    margin-top: 60px;
   }
 `
 export const SocialMediaLinks = styled.div`

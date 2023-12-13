@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 
 export const NavLink = styled(Link)`
   text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #64748b;
 `
 export const HeaderContainer = styled.div`
   display: flex;
@@ -13,6 +16,9 @@ export const HeaderContainer = styled.div`
   position: fixed;
   width: 100vw;
   top: 0;
+  @media screen and (min-width: 768px) {
+    padding: 20px 7vw;
+  }
 `
 export const WebsiteLogo = styled.img``
 export const Button = styled.button`
@@ -20,9 +26,22 @@ export const Button = styled.button`
   padding: 0;
   margin: 0;
   background-color: transparent;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `
+export const LgNavLinksList = styled.nav`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+`
+
 export const MenuBar = styled.img`
-  width: 20px;
+  width: 25px;
 `
 export const NavLinksList = styled.ul`
   display: flex;
@@ -58,7 +77,7 @@ export const CancelButton = styled.button`
   display: flex;
   padding: auto;
   margin: 0 14px;
-  font-size: 23px;
+  font-size: 28px;
   border: none;
   background-color: transparent;
 `

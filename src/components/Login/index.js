@@ -1,21 +1,7 @@
 import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import {
-  BgContainer,
-  LoginFormContainer,
-  DisplayImageMobile,
-  DisplayImageDesktop,
-  WebsiteLogo,
-  Form,
-  InputContainer,
-  UsernameLabel,
-  UsernameInput,
-  PasswordLabel,
-  PasswordInput,
-  ErrorMsg,
-  LoginButton,
-} from './styledComponents'
+import './index.css'
 
 class LoginForm extends Component {
   state = {
@@ -74,36 +60,56 @@ class LoginForm extends Component {
       return <Redirect to="/" />
     }
     return (
-      <BgContainer>
-        <LoginFormContainer>
-          <DisplayImageMobile src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702048766/ellipse.png" />
-          <DisplayImageDesktop src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702104854/Rectamgle.png" />
-          <Form onSubmit={this.submitForm}>
-            <WebsiteLogo src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702101956/Logo.png" />
-            <InputContainer>
-              <UsernameLabel htmlFor="username">Username*</UsernameLabel>
-              <UsernameInput
+      <div className="bg-container">
+        <div className="login-form-div">
+          <img
+            src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702048766/ellipse.png"
+            className="sm-display-image"
+            alt="sm img"
+          />
+          <img
+            src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702104854/Rectamgle.png"
+            className="lg-display-image"
+            alt="lg img"
+          />
+          <form className="form" onSubmit={this.submitForm}>
+            <img
+              className="website-logo"
+              src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702101956/Logo.png"
+              alt="website logo"
+            />
+            <div className="input-div">
+              <label className="label" htmlFor="username">
+                Username*
+              </label>
+              <input
+                className="input"
                 type="text"
                 id="username"
                 value={username}
                 onChange={this.changeUserName}
               />
-            </InputContainer>
-            <InputContainer>
-              <PasswordLabel htmlFor="password">Password*</PasswordLabel>
-              <PasswordInput
+            </div>
+            <div className="input-div">
+              <label className="label" htmlFor="password">
+                Password*
+              </label>
+              <input
+                className="input"
                 type="password"
                 id="password"
                 value={password}
                 onChange={this.changePassword}
                 autoComplete="on"
               />
-            </InputContainer>
-            <ErrorMsg>{showError && errorMsg}</ErrorMsg>
-            <LoginButton type="submit">Login</LoginButton>
-          </Form>
-        </LoginFormContainer>
-      </BgContainer>
+            </div>
+            <p className="error-msg">{showError && errorMsg}</p>
+            <button type="submit" className="login-button">
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
     )
   }
 }

@@ -1,0 +1,95 @@
+.link {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #64748b;
+}
+.nav-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  padding: 15px 30px;
+  background-color: yellow;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.website-logo {
+  width: 100px;
+}
+.menu-bar {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+@media screen and (min-width: 768px) {
+  .menu-bar {
+    display: none;
+  }
+}
+
+.menu-bar-icon {
+  height: 20px;
+  width: 20px;
+}
+.lg-device-nav-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 330px;
+}
+@media screen and (max-width: 768px) {
+  .lg-device-nav-links {
+    display: none;
+  }
+}
+
+.theme-button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.logout-btn {
+  padding: 8px 18px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  color: #f8fafc;
+  background-color: #0284c7;
+}
+
+.sm-device-nav-links {
+  position: absolute;
+  top: 50px;
+  z-index: 2;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffff;
+}
+@media screen and (min-width: 768px) {
+  .sm-device-nav-links {
+    display: none;
+  }
+}
+
+.cancel-button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+@media screen and (min-width: 768px) {
+}

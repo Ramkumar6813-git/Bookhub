@@ -1,9 +1,11 @@
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {Component} from 'react'
 import LoginForm from './components/Login'
 import Home from './components/Home'
 import ProtectedRoute from './components/ProtectedRoute'
 import BookShelves from './components/BookShelves'
 import BookDetails from './components/BookDetails'
+import ThemeContext from './context/ThemeContext'
 
 import './App.css'
 
@@ -32,13 +34,43 @@ const bookshelvesList = [
   },
 ]
 
-const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/login" component={LoginForm} />
-      <ProtectedRoute exact path="/" component={BookShelves} />
-    </Switch>
-  </BrowserRouter>
-)
+class App extends Component {
+  state = {
+    isDarkTheme: false,
+  }
+
+  toggleTheme = () => {
+    this.setState(prevState => ({
+      isDarkTheme: !prevState.isDarkTheme,
+    }))
+  }
+
+  render() {
+    return (
+      <ThemeContext.Provider
+        value={{
+          isDarkTheme: false,
+          toggleTheme: this.toggleTheme,
+        }}
+      >
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/login" component={LoginForm} />
+            <ProtectedRoute exact path="/" component={Home} />
+            <ProtectedRoute
+              exact
+              path="/book-shelves"
+              component={BookShelves}
+            />
+          </Switch>
+        </BrowserRouter>
+      </ThemeContext.Provider>
+    )
+  }
+}
 
 export default App
+
+//   <ThemeContext.Provider
+
+//   >

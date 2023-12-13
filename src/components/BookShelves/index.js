@@ -1,5 +1,5 @@
 import {Component} from 'react'
-
+import Loader from 'react-loader-spinner'
 import {
   FaSearch,
   FaGoogle,
@@ -43,6 +43,11 @@ import {
   Footer,
   SocialMediaLinks,
   Contact,
+  LoaderContainer,
+  FailureContainer,
+  FailureImage,
+  FailureInfo,
+  TryAgainButton,
 } from './styledComponents'
 
 const bookshelvesButtonsList = [
@@ -125,11 +130,49 @@ class BookShelves extends Component {
     }
   }
 
-  renderLoader = () => {}
+  renderLoader = () => (
+    <LoaderContainer>
+      <Loader type="TailSpin" color="#0284C7" height={35} width={35} />
+    </LoaderContainer>
+  )
 
-  renderBookShelvesList = () => {}
+  renderBookShelvesList = () => {
+    const {booksList} = this.state
+    return (
+      <BooksList>
+        {booksList.map(eachBook => (
+          <BookItem key={eachBook.id}>
+            <BookCoverPic src={eachBook.coverPic} />
+            <BookDetailsSection>
+              <BookTitle>{eachBook.title}</BookTitle>
+              <BookAuthor>{eachBook.authorName}</BookAuthor>
+              <BookRating>
+                Avg Rating{' '}
+                <Star>
+                  <FaStar />
+                </Star>
+                {eachBook.rating}
+              </BookRating>
+              <BookStatus>
+                Status : <BookStatusText>{eachBook.readStatus}</BookStatusText>
+              </BookStatus>
+            </BookDetailsSection>
+          </BookItem>
+        ))}
+      </BooksList>
+    )
+  }
 
-  renderFailureView = () => {}
+  renderFailureView = () => (
+    <FailureContainer>
+      <FailureImage
+        src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
+        alt="failure"
+      />
+      <FailureInfo>Something went wrong. Please try again</FailureInfo>
+      <TryAgainButton type="button">Try Again</TryAgainButton>
+    </FailureContainer>
+  )
 
   renderBooksListBasedOnApiStatus = () => {
     const {apiStatus} = this.state
@@ -146,7 +189,6 @@ class BookShelves extends Component {
   }
 
   render() {
-    const {booksList} = this.state
     return (
       <BookShelvesBgContainer>
         <Header />
@@ -182,28 +224,7 @@ class BookShelves extends Component {
                 </LgSearchButton>
               </LgBookSearchDiv>
             </LgDeviceSearchInputSection>
-            <BooksList>
-              {booksList.map(eachBook => (
-                <BookItem key={eachBook.id}>
-                  <BookCoverPic src={eachBook.coverPic} />
-                  <BookDetailsSection>
-                    <BookTitle>{eachBook.title}</BookTitle>
-                    <BookAuthor>{eachBook.authorName}</BookAuthor>
-                    <BookRating>
-                      Avg Rating{' '}
-                      <Star>
-                        <FaStar />
-                      </Star>
-                      {eachBook.rating}
-                    </BookRating>
-                    <BookStatus>
-                      Status :{' '}
-                      <BookStatusText>{eachBook.readStatus}</BookStatusText>
-                    </BookStatus>
-                  </BookDetailsSection>
-                </BookItem>
-              ))}
-            </BooksList>
+            {this.renderBooksListBasedOnApiStatus()}
           </DisplayBooksSection>
         </BookShelvesMainContainer>
         <Footer>
