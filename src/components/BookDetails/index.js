@@ -1,27 +1,11 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
-
+import {BsFillStarFill} from 'react-icons/bs'
+import Loader from 'react-loader-spinner'
 import Header from '../Header'
-
-import {
-  BgContainer,
-  BookDetailsContainer,
-  BookMainDetailsSection,
-  BookCoverPic,
-  MainDetailsDiv,
-  BookTitle,
-  Author,
-  Rating,
-  BookStatus,
-  LineBreak,
-  BookSubDetailsSection,
-  SubDetailsHeading,
-  SubDetailsInfo,
-  Footer,
-  SocialMediaLinks,
-  Contact,
-} from './styledComponents'
+import Footer from '../Footer'
+import ThemeContext from '../../context/ThemeContext'
+import './index.css'
 
 const apiConstants = {
   initial: 'INITIAL',
@@ -41,6 +25,9 @@ class BookDetails extends Component {
   }
 
   getBookDetails = async () => {
+    this.setState({
+      apiStatus: apiConstants.loading,
+    })
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       headers: {
@@ -73,7 +60,11 @@ class BookDetails extends Component {
     }
   }
 
-  renderLoader = () => {}
+  renderLoader = () => (
+    <div className="loader-div">
+      <Loader type="TailSpin" color="#0284C7" height={35} width={35} />
+    </div>
+  )
 
   renderBookDetails = () => {
     const {bookDetails} = this.state
@@ -88,37 +79,57 @@ class BookDetails extends Component {
     } = bookDetails
     return (
       <>
-        <BookMainDetailsSection>
-          <BookCoverPic src={coverPic} alt={title} />
-          <MainDetailsDiv>
-            <BookTitle>{title}</BookTitle>
-            <Author>{authorName}</Author>
-            <Rating>Avg Rating {rating}</Rating>
-            <BookStatus>{readStatus}</BookStatus>
-          </MainDetailsDiv>
-        </BookMainDetailsSection>
-        <LineBreak />
-        <BookSubDetailsSection>
-          <SubDetailsHeading>About Author</SubDetailsHeading>
-          <SubDetailsInfo>{aboutAuthor}</SubDetailsInfo>
-          <SubDetailsHeading>About Book</SubDetailsHeading>
-          <SubDetailsInfo>{aboutBook}</SubDetailsInfo>
-        </BookSubDetailsSection>
+        <div className="book-main-details-section">
+          <img src={coverPic} className="book-pic" alt={title} />
+          <div className="book-main-details-div ">
+            <h1 className="book-title-text">{title}</h1>
+            <p className="book-author-name text-margins">{authorName}</p>
+            <p className="book-ratings text-margins">
+              Avg Rating{' '}
+              <span className="star-icon">
+                <BsFillStarFill />
+              </span>{' '}
+              {rating}
+            </p>
+            <p className="book-status text-margins">
+              Status :<span className="book-status-text"> {readStatus}</span>
+            </p>
+          </div>
+        </div>
+        <hr className="line-break" />
+        <div className="sub-details-section ">
+          <h1 className="about-heading head-text-size">About Author</h1>
+          <p className="info">{aboutAuthor}</p>
+          <h1 className="about-heading head-text-size">About Book</h1>
+          <p className="info">{aboutBook}</p>
+        </div>
       </>
     )
   }
 
-  renderFailureView = () => {}
+  renderFailureView = () => (
+    <div className="failure-div">
+      <img
+        src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
+        className="failure-img"
+        alt="failure"
+      />
+      <p className="failure-text">Something went wrong. Please try again</p>
+      <button type="button" className="try-again-button">
+        Try Again
+      </button>
+    </div>
+  )
 
   renderBookDetailsBasedOnApi = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiConstants.loading:
-        return this.renderLoader
+        return this.renderLoader()
       case apiConstants.success:
-        return this.renderBookDetails
+        return this.renderBookDetails()
       case apiConstants.failure:
-        return this.renderFailureView
+        return this.renderFailureView()
       default:
         return null
     }
@@ -126,19 +137,20 @@ class BookDetails extends Component {
 
   render() {
     return (
-      <BgContainer>
-        <Header />
-        <BookDetailsContainer>{this.renderBookDetails()}</BookDetailsContainer>
-        <Footer>
-          <SocialMediaLinks>
-            <FaGoogle size={20} />
-            <FaTwitter size={20} />
-            <FaInstagram size={20} />
-            <FaYoutube size={20} />
-          </SocialMediaLinks>
-          <Contact>Contact Us</Contact>
-        </Footer>
-      </BgContainer>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <>
+              <Header />
+              <div className="book-details-container">
+                {this.renderBookDetailsBasedOnApi()}
+              </div>
+              <Footer />
+            </>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

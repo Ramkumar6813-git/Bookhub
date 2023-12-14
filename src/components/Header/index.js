@@ -21,15 +21,20 @@ class Header extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {isDarkTheme} = value
+          const {isDarkTheme, toggleTheme} = value
+          const changeTheme = () => {
+            toggleTheme()
+          }
           return (
             <div className="header">
               <nav className="nav-bar-container">
-                <img
-                  className="website-logo"
-                  src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702101956/Logo.png"
-                  alt="website logo"
-                />
+                <Link to="/" className="link">
+                  <img
+                    className="website-logo"
+                    src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702101956/Logo.png"
+                    alt="website logo"
+                  />
+                </Link>
                 <button
                   type="button"
                   className="menu-bar"
@@ -48,7 +53,11 @@ class Header extends Component {
                   <Link to="/book-shelves" className="link">
                     BookShelves
                   </Link>
-                  <button type="button" className="theme-button">
+                  <button
+                    type="button"
+                    className="theme-button"
+                    onClick={changeTheme}
+                  >
                     <FiSun size={30} />
                   </button>
                   <button type="button" className="logout-btn">
@@ -64,7 +73,11 @@ class Header extends Component {
                   <Link to="book-shelves" className="link">
                     BookShelves
                   </Link>
-                  <button type="button" className="theme-button">
+                  <button
+                    type="button"
+                    className="theme-button"
+                    onClick={changeTheme}
+                  >
                     <FiSun size={25} />
                   </button>
                   <button type="button" className="logout-btn">
@@ -88,35 +101,3 @@ class Header extends Component {
 }
 
 export default Header
-
-// <HeaderContainer>
-//   <NavLink to="/">
-//     <WebsiteLogo src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702101956/Logo.png" />
-//   </NavLink>
-//   <LgNavLinksList>
-//     <NavLink to="/">
-//       <HomeNavLink>Home</HomeNavLink>
-//     </NavLink>
-//     <NavLink to="/book-shelves">
-//       <BookShelvesNavLink>Book Shelves</BookShelvesNavLink>
-//     </NavLink>
-//     <LogoutButton>Logout</LogoutButton>
-//   </LgNavLinksList>
-//   <Button onClick={this.toggleNavLinks}>
-//     <MenuBar src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702134624/nev9clnfx9qked8blhig.png" />
-//   </Button>
-// </HeaderContainer>
-// {showNavLinks && (
-//   <NavLinksList>
-//     <NavLink to="/">
-//       <HomeNavLink>Home</HomeNavLink>
-//     </NavLink>
-//     <NavLink to="/book-shelves">
-//       <BookShelvesNavLink>Book Shelves</BookShelvesNavLink>
-//     </NavLink>
-//     <LogoutButton>Logout</LogoutButton>
-//     <CancelButton onClick={this.toggleNavLinks}>
-//       <MdCancel />
-//     </CancelButton>
-//   </NavLinksList>
-// )}

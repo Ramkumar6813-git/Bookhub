@@ -65,18 +65,18 @@ class LoginForm extends Component {
           <img
             src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702048766/ellipse.png"
             className="sm-display-image"
-            alt="sm img"
+            alt="website login"
           />
           <img
             src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702104854/Rectamgle.png"
             className="lg-display-image"
-            alt="lg img"
+            alt="website login"
           />
           <form className="form" onSubmit={this.submitForm}>
             <img
               className="website-logo"
               src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702101956/Logo.png"
-              alt="website logo"
+              alt="login website logo"
             />
             <div className="input-div">
               <label className="label" htmlFor="username">

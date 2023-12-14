@@ -2,7 +2,6 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
-import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
 import Footer from '../Footer'
 
 import 'slick-carousel/slick/slick.css'
@@ -12,31 +11,6 @@ import Header from '../Header'
 import ThemeContext from '../../context/ThemeContext'
 
 import './index.css'
-
-import {
-  HomeBgContainer,
-  FindBooksDiv,
-  HeadingText,
-  DescriptionText,
-  FindBooksButton,
-  SliderContainer,
-  SliderInfoDiv,
-  SliderHeading,
-  LgFindBooksButton,
-  SlidesList,
-  SliderBookItem,
-  SliderBookButton,
-  BookCoverPic,
-  BookTitle,
-  BookAuthor,
-  SocialMediaLinks,
-  Contact,
-  LoaderContainer,
-  FailureContainer,
-  FailureImage,
-  FailureInfo,
-  TryAgainButton,
-} from './styledComponents'
 
 const apiConstants = {
   initial: 'INITIAL',
@@ -89,9 +63,9 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <LoaderContainer>
+    <div className="home-loader-container" testid="loader">
       <Loader type="TailSpin" color="#0284C7" height={30} width={30} />
-    </LoaderContainer>
+    </div>
   )
 
   renderTopRatedBooks = () => {
@@ -132,9 +106,13 @@ class Home extends Component {
           const {id, coverPic, title, authorName} = eachBookData
           return (
             <div className="slider-item" key={id}>
-              <img src={coverPic} className="book-cover-pic" alt="ss" />
-              <p className="book-title">{title}</p>
-              <p className="book-author">{authorName}</p>
+              <img
+                src={coverPic}
+                className="trending-book-cover-pic"
+                alt="ss"
+              />
+              <p className="trending-book-title">{title}</p>
+              <p className="trending-book-author">{authorName}</p>
             </div>
           )
         })}
@@ -143,14 +121,19 @@ class Home extends Component {
   }
 
   renderFailureView = () => (
-    <FailureContainer>
-      <FailureImage
+    <div className="home-failure-container">
+      <img
         src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
-        alt="failure"
+        className="home-failure-image"
+        alt="failure view"
       />
-      <FailureInfo>Something went wrong. Please try again</FailureInfo>
-      <TryAgainButton type="button">Try Again</TryAgainButton>
-    </FailureContainer>
+      <p className="home-failure-info-text">
+        Something went wrong. Please try again
+      </p>
+      <button type="button" className="try-again-button">
+        Try Again
+      </button>
+    </div>
   )
 
   renderBooksBasedOnApiStatus = () => {
@@ -183,7 +166,7 @@ class Home extends Component {
                     you have enjoyed in the past, and we will give you
                     surprisingly insightful recommendations.
                   </p>
-                  <button type="button" className="find-books-button ">
+                  <button type="button" className="find-books-button">
                     Find Books
                   </button>
                 </div>

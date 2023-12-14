@@ -1,54 +1,14 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import {
-  FaSearch,
-  FaGoogle,
-  FaTwitter,
-  FaInstagram,
-  FaYoutube,
-  FaStar,
-} from 'react-icons/fa'
+
+import {BiSearch} from 'react-icons/bi'
+import {BsFillStarFill} from 'react-icons/bs'
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
-
-import {
-  BookShelvesBgContainer,
-  BookShelvesMainContainer,
-  TagLinksSection,
-  BookSearchDiv,
-  SearchInput,
-  SearchButton,
-  BookShelvesButtonsDiv,
-  Heading,
-  BookShelvesButtonsList,
-  BookShelvesButtonItem,
-  BookShelvesButton,
-  DisplayBooksSection,
-  LgDeviceSearchInputSection,
-  LgDeviceHeading,
-  LgBookSearchDiv,
-  LgSearchInput,
-  LgSearchButton,
-  BooksList,
-  BookItem,
-  BookCoverPic,
-  BookDetailsSection,
-  BookTitle,
-  BookAuthor,
-  BookRating,
-  Star,
-  BookStatus,
-  BookStatusText,
-  Footer,
-  SocialMediaLinks,
-  Contact,
-  LoaderContainer,
-  FailureContainer,
-  FailureImage,
-  FailureInfo,
-  TryAgainButton,
-} from './styledComponents'
+import ThemeContext from '../../context/ThemeContext'
+import Footer from '../Footer'
+import './index.css'
 
 const bookshelvesButtonsList = [
   {
@@ -84,7 +44,7 @@ class BookShelves extends Component {
   state = {
     apiStatus: apiConstants.initial,
     booksList: [],
-    shelf: 'All',
+    shelfTag: 'All',
     searchInput: '',
   }
 
@@ -131,47 +91,58 @@ class BookShelves extends Component {
   }
 
   renderLoader = () => (
-    <LoaderContainer>
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#0284C7" height={35} width={35} />
-    </LoaderContainer>
+    </div>
   )
 
   renderBookShelvesList = () => {
     const {booksList} = this.state
     return (
-      <BooksList>
-        {booksList.map(eachBook => (
-          <BookItem key={eachBook.id}>
-            <BookCoverPic src={eachBook.coverPic} />
-            <BookDetailsSection>
-              <BookTitle>{eachBook.title}</BookTitle>
-              <BookAuthor>{eachBook.authorName}</BookAuthor>
-              <BookRating>
-                Avg Rating{' '}
-                <Star>
-                  <FaStar />
-                </Star>
-                {eachBook.rating}
-              </BookRating>
-              <BookStatus>
-                Status : <BookStatusText>{eachBook.readStatus}</BookStatusText>
-              </BookStatus>
-            </BookDetailsSection>
-          </BookItem>
-        ))}
-      </BooksList>
+      <ul className="book-items">
+        {booksList.map(eachBook => {
+          const {id, coverPic, title, authorName, rating, readStatus} = eachBook
+          return (
+            <li className="book-li-item" key={title}>
+              <img src={coverPic} className="book-cover-pic" alt={id} />
+              <div className="book-details-section">
+                <h1 className="book-title">{title}</h1>
+                <p className="book-author">{authorName}</p>
+                <p className="book-rating">
+                  Avg Rating{' '}
+                  <span className="star-icon">
+                    <BsFillStarFill />
+                  </span>
+                  {rating}
+                </p>
+                <p className="book-status">
+                  <span className="book-status-text">
+                    {' '}
+                    Status : {readStatus}
+                  </span>
+                </p>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
     )
   }
 
   renderFailureView = () => (
-    <FailureContainer>
-      <FailureImage
+    <div className="failure-container">
+      <img
         src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
-        alt="failure"
+        className="failure-image"
+        alt="failure view"
       />
-      <FailureInfo>Something went wrong. Please try again</FailureInfo>
-      <TryAgainButton type="button">Try Again</TryAgainButton>
-    </FailureContainer>
+      <p className="failure-info-text">
+        Something went wrong. Please try again
+      </p>
+      <button type="button" className="try-again-button">
+        Try Again
+      </button>
+    </div>
   )
 
   renderBooksListBasedOnApiStatus = () => {
@@ -190,53 +161,66 @@ class BookShelves extends Component {
 
   render() {
     return (
-      <BookShelvesBgContainer>
-        <Header />
-        <BookShelvesMainContainer>
-          <TagLinksSection>
-            <BookSearchDiv>
-              <SearchInput type="search" placeholder="Search" />
-              <SearchButton>
-                <FaSearch size={18} />
-              </SearchButton>
-            </BookSearchDiv>
-            <BookShelvesButtonsDiv>
-              <Heading>BookShelves</Heading>
-              <BookShelvesButtonsList>
-                {bookshelvesButtonsList.map(eachType => {
-                  const {id, value, label} = eachType
-                  return (
-                    <BookShelvesButtonItem key={id}>
-                      <BookShelvesButton>{label}</BookShelvesButton>
-                    </BookShelvesButtonItem>
-                  )
-                })}
-              </BookShelvesButtonsList>
-            </BookShelvesButtonsDiv>
-          </TagLinksSection>
-          <DisplayBooksSection>
-            <LgDeviceSearchInputSection>
-              <LgDeviceHeading>All Books</LgDeviceHeading>
-              <LgBookSearchDiv>
-                <LgSearchInput type="search" placeholder="Sea life" />
-                <LgSearchButton>
-                  <FaSearch size={18} />
-                </LgSearchButton>
-              </LgBookSearchDiv>
-            </LgDeviceSearchInputSection>
-            {this.renderBooksListBasedOnApiStatus()}
-          </DisplayBooksSection>
-        </BookShelvesMainContainer>
-        <Footer>
-          <SocialMediaLinks>
-            <FaGoogle size={20} />
-            <FaTwitter size={20} />
-            <FaInstagram size={20} />
-            <FaYoutube size={20} />
-          </SocialMediaLinks>
-          <Contact>Contact Us</Contact>
-        </Footer>
-      </BookShelvesBgContainer>
+      <ThemeContext.Consumer>
+        {values => {
+          const {idDarkTheme} = values
+          return (
+            <>
+              <Header />
+              <div className="bookshelves-main-container">
+                <div className="book-status-buttons-section">
+                  <div className="sm-device-search-div">
+                    <input
+                      type="search"
+                      className="search-input"
+                      placeholder="Search"
+                    />
+                    <button
+                      type="button"
+                      className="search-button"
+                      testid="searchButton"
+                    >
+                      <BiSearch size={18} />
+                    </button>
+                  </div>
+                  <div className="book-status-buttons-sub-div">
+                    <h1 className="head-text">BookShelves</h1>
+                    <ul className="book-status-buttons-list">
+                      {bookshelvesButtonsList.map(eachType => {
+                        const {id, value, label} = eachType
+                        return (
+                          <li className="book-status-button-item" key={id}>
+                            <button type="button" className="status-button">
+                              {label}
+                            </button>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </div>
+                <div className="books-display-section">
+                  <div className="books-display-info-div">
+                    <h1 className="head-text">All Books</h1>
+                    <div className="lg-device-search-div">
+                      <input
+                        className="search-input"
+                        type="search"
+                        placeholder="Sea life"
+                      />
+                      <button type="button" className="search-button">
+                        <BiSearch size={18} />
+                      </button>
+                    </div>
+                  </div>
+                  {this.renderBooksListBasedOnApiStatus()}
+                  <Footer />
+                </div>
+              </div>
+            </>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

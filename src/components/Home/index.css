@@ -40,7 +40,7 @@
     font-size: 17px;
     line-height: 25px;
     padding-bottom: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 8px;
   }
 }
 
@@ -117,20 +117,25 @@
     width: 130px;
   }
 }
-.book-cover-pic {
+.trending-book-cover-pic {
   width: 100%;
   max-width: 160px;
-  height: 140px;
+  height: 150px;
   border-radius: 5px;
 }
-.book-title {
+@media screen and (min-width: 768px) {
+  .trending-book-cover-pic {
+    height: 150px;
+  }
+}
+.trending-book-title {
   font-size: 13px;
-  margin-top: 10px;
+  margin-top: 15px;
   padding-bottom: 5px;
   color: #334155;
   font-weight: 600;
 }
-.book-author {
+.trending-book-author {
   font-size: 12px;
   color: #475569;
   font-weight: 500;
@@ -141,5 +146,42 @@
   color: black;
 }
 
+.home-loader-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.home-failure-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-failure-image {
+  width: 230px;
+  height: 120px;
+}
+.home-failure-info-text {
+  margin: 13px 0px;
+  font-size: 15px;
+  color: #475569;
+  font-weight: 500;
+}
+
 @media screen and (min-width: 768px) {
+  .home-failure-info-text {
+    font-size: 16px;
+  }
+}
+
+.try-again-button {
+  padding: 8px 16px;
+  color: #f8fafc;
+  background-color: #0284c7;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
 }

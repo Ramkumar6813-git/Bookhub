@@ -1,0 +1,281 @@
+.link {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #64748b;
+}
+.bookshelves-main-container {
+  padding: 20px;
+  margin-top: 50px;
+  background-color: #f5f7fa;
+}
+
+@media screen and (min-width: 768px) {
+  .bookshelves-main-container {
+    display: flex;
+    padding: 20px;
+    margin-top: 50px;
+  }
+}
+
+.book-status-buttons-section {
+}
+
+.sm-device-search-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #cbd5e1;
+  width: 70%;
+  max-width: 350px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.search-input {
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  padding: 3px 15px;
+  font-size: 15px;
+  color: #94a3b8;
+}
+.search-button {
+  padding: 8px 23px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  color: #94a3b8;
+}
+@media screen and (min-width: 768px) {
+  .sm-device-search-div {
+    display: none;
+  }
+}
+
+.book-status-buttons-sub-div {
+  margin-top: 10px;
+}
+@media screen and (min-width: 768px) {
+  .book-status-buttons-sub-div {
+    background-color: #fff;
+    width: 20vw;
+    position: fixed;
+    height: 100vh;
+    margin-top: 5px 10px 0px 0px;
+    padding: 10px;
+  }
+}
+.head-text {
+  font-size: 18px;
+  margin: 15px 0px;
+  color: #334155;
+}
+.book-status-buttons-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 768px) {
+  .book-status-buttons-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.book-status-button-item {
+}
+.status-button {
+  padding: 4px 15px;
+  border-radius: 16px;
+  border: 1px solid blue;
+  margin: 0px 16px 15px 0px;
+  background-color: transparent;
+  border: 1px solid #0284c7;
+  color: #0284c7;
+  font-weight: bold;
+  font-size: 15px;
+}
+@media screen and (min-width: 768px) {
+  .status-button {
+    border: none;
+    padding: 0;
+    text-align: start;
+    margin: 5px 0px;
+    color: #475569;
+    font-weight: 500;
+  }
+}
+
+.books-display-section {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .books-display-section {
+    width: 100%;
+    margin-left: 21vw;
+    margin-top: 10px;
+  }
+}
+
+.books-display-info-div {
+}
+@media screen and (min-width: 768px) {
+  .books-display-info-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.lg-device-search-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #cbd5e1;
+  width: 50%;
+  max-width: 300px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .lg-device-search-div {
+    display: none;
+  }
+}
+.book-items {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .book-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px;
+  }
+}
+
+.book-li-item {
+  display: flex;
+  margin: 0px 0px 15px 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .book-li-item {
+    width: 270px;
+  }
+}
+
+.book-cover-pic {
+  width: 140px;
+  height: 170px;
+  margin-right: 15px;
+}
+@media screen and (min-width: 768px) {
+  .book-cover-pic {
+    width: 140px;
+    height: 160px;
+  }
+}
+.book-details-section {
+}
+@media screen and (min-width: 768px) {
+  .book-details-section {
+  }
+}
+.book-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #334155;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+.book-author {
+  font-size: 15px;
+  margin: 5px 0px;
+  color: #475569;
+  font-weight: 500;
+}
+.book-rating {
+  font-size: 15px;
+  margin: 5px 0px;
+  color: #475569;
+  font-weight: 500;
+}
+.star-icon {
+  padding: 0px 5px 0px 3px;
+  text-align: center;
+  color: #fbbf24;
+}
+.book-status {
+  font-size: 14px;
+}
+.book-status-text {
+  color: #0284c7;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 55vh;
+}
+
+@media screen and (min-width: 768px) {
+  .loader-container {
+    height: 60vh;
+  }
+}
+
+.failure-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+}
+@media screen and (min-width: 768px) {
+  .failure-container {
+    height: 60vh;
+  }
+}
+
+.failure-image {
+  height: 125px;
+  width: 220px;
+}
+@media screen and (min-width: 768px) {
+  .failure-image {
+    height: 145px;
+    width: 240px;
+  }
+}
+.failure-info-text {
+  font-size: 15px;
+  margin: 10px 0px;
+}
+@media screen and (min-width: 768px) {
+  .failure-info-text {
+    margin: 20px 0px;
+  }
+}
+.try-again-button {
+}
+
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+}

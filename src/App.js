@@ -2,10 +2,11 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {Component} from 'react'
 import LoginForm from './components/Login'
 import Home from './components/Home'
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './ProtectedRoute'
 import BookShelves from './components/BookShelves'
 import BookDetails from './components/BookDetails'
 import ThemeContext from './context/ThemeContext'
+import PageNotFound from './components/PageNotFound'
 
 import './App.css'
 
@@ -46,22 +47,30 @@ class App extends Component {
   }
 
   render() {
+    const {isDarkTheme} = this.state
     return (
       <ThemeContext.Provider
         value={{
-          isDarkTheme: false,
+          isDarkTheme,
           toggleTheme: this.toggleTheme,
         }}
       >
         <BrowserRouter>
           <Switch>
-            <Route exact path="/login" component={LoginForm} />
+            <Route
+              exact
+              path="/login"
+              component={LoginForm}
+              toggleTheme={this.toggleTheme}
+            />
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute
               exact
-              path="/book-shelves"
-              component={BookShelves}
+              path="/book-details"
+              component={BookDetails}
             />
+            <ProtectedRoute exact path="/shelf" component={BookShelves} />
+            <ProtectedRoute path="/not-found" component={PageNotFound} />
           </Switch>
         </BrowserRouter>
       </ThemeContext.Provider>
@@ -70,7 +79,3 @@ class App extends Component {
 }
 
 export default App
-
-//   <ThemeContext.Provider
-
-//   >
