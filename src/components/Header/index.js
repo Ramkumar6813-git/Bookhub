@@ -50,7 +50,7 @@ class Header extends Component {
                   <Link to="/" className="link">
                     Home
                   </Link>
-                  <Link to="/book-shelves" className="link">
+                  <Link to="/shelf" className="link">
                     BookShelves
                   </Link>
                   <button
@@ -70,7 +70,7 @@ class Header extends Component {
                   <Link to="/" className="link">
                     Home
                   </Link>
-                  <Link to="book-shelves" className="link">
+                  <Link to="/shelf" className="link">
                     BookShelves
                   </Link>
                   <button

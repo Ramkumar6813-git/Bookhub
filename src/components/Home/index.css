@@ -1,7 +1,13 @@
+.link {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #64748b;
+}
 .home-container {
   background-color: #f5f7fa;
   background-size: cover;
-  height: 100vh;
+  min-height: 90vh;
 }
 @media screen and (min-width: 768px) {
   .home-container {
@@ -97,13 +103,13 @@
 .slider-main-section {
   width: 100%;
   max-width: 1100px;
-  padding: 10px 20px;
+  padding: 10px 25px;
   height: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .slider-item {
-  width: 120px;
+  width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,7 +126,7 @@
 .trending-book-cover-pic {
   width: 100%;
   max-width: 160px;
-  height: 150px;
+  height: 140px;
   border-radius: 5px;
 }
 @media screen and (min-width: 768px) {
@@ -130,7 +136,7 @@
 }
 .trending-book-title {
   font-size: 13px;
-  margin-top: 15px;
+  margin-top: 16px;
   padding-bottom: 5px;
   color: #334155;
   font-weight: 600;

@@ -28,6 +28,7 @@ class BookDetails extends Component {
     this.setState({
       apiStatus: apiConstants.loading,
     })
+
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       headers: {

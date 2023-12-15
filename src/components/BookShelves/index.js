@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-
+import {Link} from 'react-router-dom'
 import {BiSearch} from 'react-icons/bi'
 import {BsFillStarFill} from 'react-icons/bs'
 import Cookies from 'js-cookie'
@@ -44,8 +44,9 @@ class BookShelves extends Component {
   state = {
     apiStatus: apiConstants.initial,
     booksList: [],
-    shelfTag: 'All',
-    searchInput: '',
+    bookShelfButton: bookshelvesButtonsList[0].label,
+    bookShelfValue: bookshelvesButtonsList[0].value,
+    searchInputValue: '',
   }
 
   componentDidMount = () => {
@@ -53,10 +54,10 @@ class BookShelves extends Component {
   }
 
   getBooksData = async () => {
+    const {bookShelfValue, searchInputValue} = this.state
     this.setState({
       apiStatus: apiConstants.loading,
     })
-    const {searchInput} = this.state
     this.setState({
       apiStatus: apiConstants.loading,
     })
@@ -66,7 +67,7 @@ class BookShelves extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const apiUrl = `https://apis.ccbp.in/book-hub/books?shelf=READ&search=${searchInput}`
+    const apiUrl = `https://apis.ccbp.in/book-hub/books?shelf=${bookShelfValue}&search=${searchInputValue}`
     const res = await fetch(apiUrl, options)
     const data = await res.json()
     if (res.ok === true) {
@@ -98,34 +99,52 @@ class BookShelves extends Component {
 
   renderBookShelvesList = () => {
     const {booksList} = this.state
+    const emptyBooksList = booksList.length === 0
     return (
-      <ul className="book-items">
-        {booksList.map(eachBook => {
-          const {id, coverPic, title, authorName, rating, readStatus} = eachBook
-          return (
-            <li className="book-li-item" key={title}>
-              <img src={coverPic} className="book-cover-pic" alt={id} />
-              <div className="book-details-section">
-                <h1 className="book-title">{title}</h1>
-                <p className="book-author">{authorName}</p>
-                <p className="book-rating">
-                  Avg Rating{' '}
-                  <span className="star-icon">
-                    <BsFillStarFill />
-                  </span>
-                  {rating}
-                </p>
-                <p className="book-status">
-                  <span className="book-status-text">
-                    {' '}
-                    Status : {readStatus}
-                  </span>
-                </p>
-              </div>
-            </li>
-          )
-        })}
-      </ul>
+      <>
+        {emptyBooksList && this.renderNoDataView()}
+        {!emptyBooksList && (
+          <>
+            <ul className="book-items">
+              {booksList.map(eachBook => {
+                const {
+                  id,
+                  coverPic,
+                  title,
+                  authorName,
+                  rating,
+                  readStatus,
+                } = eachBook
+                return (
+                  <Link to={`/book-hub/books/${id}`} className="link">
+                    <li className="book-li-item" key={title}>
+                      <img src={coverPic} className="book-cover-pic" alt={id} />
+                      <div className="book-details-section">
+                        <h1 className="book-title">{title}</h1>
+                        <p className="book-author">{authorName}</p>
+                        <p className="book-rating">
+                          Avg Rating{' '}
+                          <span className="star-icon">
+                            <BsFillStarFill />
+                          </span>
+                          {rating}
+                        </p>
+                        <p className="book-status">
+                          <span className="book-status-text">
+                            {' '}
+                            Status : {readStatus}
+                          </span>
+                        </p>
+                      </div>
+                    </li>
+                  </Link>
+                )
+              })}
+            </ul>
+            <Footer />
+          </>
+        )}
+      </>
     )
   }
 
@@ -159,13 +178,39 @@ class BookShelves extends Component {
     }
   }
 
+  changeSearchInputValue = e => {
+    this.setState(
+      {
+        searchInputValue: e.target.value,
+      },
+      this.getBooksData,
+    )
+  }
+
+  renderNoDataView = () => {
+    const {searchInputValue} = this.state
+    return (
+      <div className="no-data-container">
+        <img
+          src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702623533/Notfoundwed.png"
+          alt="no-data"
+          className="no-data-img"
+        />
+        <p className="no-data-text">
+          Your search for {searchInputValue} did not find any matches.
+        </p>
+      </div>
+    )
+  }
+
   render() {
+    const {bookShelfButton} = this.state
     return (
       <ThemeContext.Consumer>
         {values => {
           const {idDarkTheme} = values
           return (
-            <>
+            <div className="shelf-bg-container">
               <Header />
               <div className="bookshelves-main-container">
                 <div className="book-status-buttons-section">
@@ -174,6 +219,7 @@ class BookShelves extends Component {
                       type="search"
                       className="search-input"
                       placeholder="Search"
+                      onChange={this.changeSearchInputValue}
                     />
                     <button
                       type="button"
@@ -190,7 +236,23 @@ class BookShelves extends Component {
                         const {id, value, label} = eachType
                         return (
                           <li className="book-status-button-item" key={id}>
-                            <button type="button" className="status-button">
+                            <button
+                              type="button"
+                              className={
+                                bookShelfButton === label
+                                  ? 'active-shelf-button'
+                                  : 'shelf-button'
+                              }
+                              onClick={() => {
+                                this.setState(
+                                  {
+                                    bookShelfButton: label,
+                                    bookShelfValue: value,
+                                  },
+                                  this.getBooksData,
+                                )
+                              }}
+                            >
                               {label}
                             </button>
                           </li>
@@ -201,12 +263,13 @@ class BookShelves extends Component {
                 </div>
                 <div className="books-display-section">
                   <div className="books-display-info-div">
-                    <h1 className="head-text">All Books</h1>
+                    <h1 className="head-text">{bookShelfButton} Books</h1>
                     <div className="lg-device-search-div">
                       <input
                         className="search-input"
                         type="search"
-                        placeholder="Sea life"
+                        placeholder="Search"
+                        onChange={this.changeSearchInputValue}
                       />
                       <button type="button" className="search-button">
                         <BiSearch size={18} />
@@ -214,10 +277,9 @@ class BookShelves extends Component {
                     </div>
                   </div>
                   {this.renderBooksListBasedOnApiStatus()}
-                  <Footer />
                 </div>
               </div>
-            </>
+            </div>
           )
         }}
       </ThemeContext.Consumer>

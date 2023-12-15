@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
@@ -22,7 +23,7 @@ const apiConstants = {
 class Home extends Component {
   state = {
     apiStatus: apiConstants.initial,
-    apiData: [],
+    topRatedBooksData: [],
   }
 
   componentDidMount = () => {
@@ -52,7 +53,7 @@ class Home extends Component {
         title: book.title,
       }))
       this.setState({
-        apiData: updatedData,
+        topRatedBooksData: updatedData,
         apiStatus: apiConstants.success,
       })
     } else {
@@ -69,7 +70,7 @@ class Home extends Component {
   )
 
   renderTopRatedBooks = () => {
-    const {apiData} = this.state
+    const {topRatedBooksData} = this.state
     const settings = {
       dots: false,
       infinite: false,
@@ -80,14 +81,14 @@ class Home extends Component {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 5,
+            slidesToShow: 4,
             slidesToScroll: 1,
           },
         },
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
           },
         },
@@ -102,22 +103,28 @@ class Home extends Component {
     }
     return (
       <Slider {...settings}>
-        {apiData.map(eachBookData => {
+        {topRatedBooksData.map(eachBookData => {
           const {id, coverPic, title, authorName} = eachBookData
           return (
-            <div className="slider-item" key={id}>
-              <img
-                src={coverPic}
-                className="trending-book-cover-pic"
-                alt="ss"
-              />
-              <p className="trending-book-title">{title}</p>
-              <p className="trending-book-author">{authorName}</p>
-            </div>
+            <Link to={`/book-hub/books/${id}`} className="link">
+              <li className="slider-item" key={id}>
+                <img
+                  src={coverPic}
+                  className="trending-book-cover-pic"
+                  alt="ss"
+                />
+                <p className="trending-book-title">{title}</p>
+                <p className="trending-book-author">{authorName}</p>
+              </li>
+            </Link>
           )
         })}
       </Slider>
     )
+  }
+
+  getBooksData = () => {
+    this.getTopRatedBooks()
   }
 
   renderFailureView = () => (
@@ -130,7 +137,11 @@ class Home extends Component {
       <p className="home-failure-info-text">
         Something went wrong. Please try again
       </p>
-      <button type="button" className="try-again-button">
+      <button
+        type="button"
+        className="try-again-button"
+        onClick={this.getBookData}
+      >
         Try Again
       </button>
     </div>
@@ -166,16 +177,20 @@ class Home extends Component {
                     you have enjoyed in the past, and we will give you
                     surprisingly insightful recommendations.
                   </p>
-                  <button type="button" className="find-books-button">
-                    Find Books
-                  </button>
+                  <Link to="/shelf" className="link">
+                    <button type="button" className="find-books-button">
+                      Find Books
+                    </button>
+                  </Link>
                 </div>
                 <div className="slider-div">
                   <div className="slider-info-section">
                     <h1 className="slider-head-text">Top Rated Books</h1>
-                    <button type="button" className="lg-device-find-button">
-                      Find Books
-                    </button>
+                    <Link to="/shelf" className="link">
+                      <button type="button" className="lg-device-find-button">
+                        Find Books
+                      </button>
+                    </Link>
                   </div>
                   <div className="slider-main-section">
                     {this.renderBooksBasedOnApiStatus()}
