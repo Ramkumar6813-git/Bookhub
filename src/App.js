@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import {Component} from 'react'
 import LoginForm from './components/Login'
 import Home from './components/Home'
@@ -43,11 +43,12 @@ class App extends Component {
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute
               exact
-              path="/book-hub/books/:bookId"
+              path="/book-hub/books/:id"
               component={BookDetails}
             />
             <ProtectedRoute exact path="/shelf" component={BookShelves} />
-            <ProtectedRoute path="/not-found" component={PageNotFound} />
+            <ProtectedRoute component={PageNotFound} />
+            <Redirect to="/not-found" component={PageNotFound} />
           </Switch>
         </BrowserRouter>
       </ThemeContext.Provider>

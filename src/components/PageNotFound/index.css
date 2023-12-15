@@ -1,0 +1,21 @@
+.page-not-found-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  margin: 0px 20vw;
+}
+.not-found-img {
+  width: 300px;
+  margin-bottom: 20px;
+}
+.not-found-text {
+  margin-bottom: 10px;
+}
+.not-found-description {
+  margin-bottom: 20px;
+}
+.go-to-home-button {
+}

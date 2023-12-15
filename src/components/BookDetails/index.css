@@ -1,3 +1,8 @@
+.book-details-bg-container {
+  background-color: #f5f7fa;
+  width: 100vw;
+  min-height: 88vh;
+}
 .book-details-container {
   margin-top: 70px;
   min-height: 70vh;
@@ -19,7 +24,7 @@
   .book-main-details-section {
     flex-direction: row;
     justify-content: center;
-    padding: 10px 0px;
+    padding: 15px 0px;
   }
 }
 .book-pic {
@@ -31,7 +36,7 @@
 @media screen and (min-width: 768px) {
   .book-pic {
     width: 180px;
-    height: 220px;
+    height: 230px;
   }
 }
 
@@ -50,7 +55,7 @@
 }
 
 .text-margins {
-  margin: 6px 0px;
+  margin: 8px 0px;
 }
 
 .book-title-text {
@@ -66,11 +71,12 @@
 .book-author-name {
   font-size: 16px;
 }
-
-.book-ratings-icon {
+.book-ratings {
+  font-size: 15px;
 }
 
 .book-status-text {
+  font-size: 15px;
 }
 
 .line-break {

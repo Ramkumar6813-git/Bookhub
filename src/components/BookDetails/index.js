@@ -21,10 +21,14 @@ class BookDetails extends Component {
   }
 
   componentDidMount = () => {
-    this.getBookDetails()
+    this.getBookItemDetails()
   }
 
-  getBookDetails = async () => {
+  getBookItemDetails = async () => {
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+    const bookId = id
     this.setState({
       apiStatus: apiConstants.loading,
     })
@@ -35,7 +39,7 @@ class BookDetails extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const apiUrl = `https://apis.ccbp.in/book-hub/books/7850622e-1b70-4396-963d-e68d5a2577d7`
+    const apiUrl = `https://apis.ccbp.in/book-hub/books/${bookId}`
     const response = await fetch(apiUrl, options)
     const data = await response.json()
     if (response.ok === true) {
@@ -108,6 +112,10 @@ class BookDetails extends Component {
     )
   }
 
+  onClickGetBookDetails = () => {
+    this.getBookItemDetails()
+  }
+
   renderFailureView = () => (
     <div className="failure-div">
       <img
@@ -116,7 +124,11 @@ class BookDetails extends Component {
         alt="failure"
       />
       <p className="failure-text">Something went wrong. Please try again</p>
-      <button type="button" className="try-again-button">
+      <button
+        type="button"
+        className="try-again-button"
+        onClick={this.onClickGetBookDetails}
+      >
         Try Again
       </button>
     </div>
@@ -142,13 +154,13 @@ class BookDetails extends Component {
         {value => {
           const {isDarkTheme} = value
           return (
-            <>
+            <div className="book-details-bg-container">
               <Header />
               <div className="book-details-container">
                 {this.renderBookDetailsBasedOnApi()}
               </div>
               <Footer />
-            </>
+            </div>
           )
         }}
       </ThemeContext.Consumer>
