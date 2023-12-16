@@ -102,24 +102,41 @@ class Home extends Component {
       ],
     }
     return (
-      <Slider {...settings}>
-        {topRatedBooksData.map(eachBookData => {
-          const {id, coverPic, title, authorName} = eachBookData
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const textColor = isDarkTheme
+            ? 'dark-theme-text-color'
+            : 'light-theme-text-color'
+          const headingColor = isDarkTheme
+            ? 'dark-theme-heading-color'
+            : 'light-theme-heading-color'
           return (
-            <Link to={`/book-hub/books/${id}`} className="link">
-              <li className="slider-item" key={id}>
-                <img
-                  src={coverPic}
-                  className="trending-book-cover-pic"
-                  alt="ss"
-                />
-                <p className="trending-book-title">{title}</p>
-                <p className="trending-book-author">{authorName}</p>
-              </li>
-            </Link>
+            <Slider {...settings}>
+              {topRatedBooksData.map(eachBookData => {
+                const {id, coverPic, title, authorName} = eachBookData
+                return (
+                  <Link to={`/book-hub/books/${id}`} className="link">
+                    <li className="slider-item" key={id}>
+                      <img
+                        src={coverPic}
+                        className="trending-book-cover-pic"
+                        alt="ss"
+                      />
+                      <p className={`trending-book-title ${headingColor}`}>
+                        {title}
+                      </p>
+                      <p className={`trending-book-author ${textColor}`}>
+                        {authorName}
+                      </p>
+                    </li>
+                  </Link>
+                )
+              })}
+            </Slider>
           )
-        })}
-      </Slider>
+        }}
+      </ThemeContext.Consumer>
     )
   }
 
@@ -166,13 +183,28 @@ class Home extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDarkTheme} = value
+          const bgColor = isDarkTheme
+            ? 'dark-theme-home-bg-color'
+            : 'light-theme-home-bg-color'
+          const sliderDivBgColor = isDarkTheme
+            ? 'slider-dark-theme-bg-color'
+            : 'slider-dark-light-bg-color '
+
+          const textColor = isDarkTheme
+            ? 'dark-theme-text-color'
+            : 'light-theme-text-color'
+          const headingColor = isDarkTheme
+            ? 'dark-theme-heading-color'
+            : 'light-theme-heading-color'
           return (
-            <>
+            <div className={`home-bg-div ${bgColor}`}>
               <Header />
               <div className="home-container">
                 <div className="find-books-section">
-                  <h1 className="heading">Find Your Next Favorite Books?</h1>
-                  <p className="description">
+                  <h1 className={`heading ${headingColor}`}>
+                    Find Your Next Favorite Books?
+                  </h1>
+                  <p className={`description ${textColor}`}>
                     You are in the right place. Tell us what titles or genres
                     you have enjoyed in the past, and we will give you
                     surprisingly insightful recommendations.
@@ -183,9 +215,11 @@ class Home extends Component {
                     </button>
                   </Link>
                 </div>
-                <div className="slider-div">
+                <div className={`slider-div ${sliderDivBgColor}`}>
                   <div className="slider-info-section">
-                    <h1 className="slider-head-text">Top Rated Books</h1>
+                    <h1 className={`slider-head-text ${textColor}`}>
+                      Top Rated Books
+                    </h1>
                     <Link to="/shelf" className="link">
                       <button type="button" className="lg-device-find-button">
                         Find Books
@@ -198,7 +232,7 @@ class Home extends Component {
                 </div>
                 <Footer />
               </div>
-            </>
+            </div>
           )
         }}
       </ThemeContext.Consumer>

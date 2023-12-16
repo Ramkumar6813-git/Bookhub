@@ -101,50 +101,72 @@ class BookShelves extends Component {
     const {booksList} = this.state
     const emptyBooksList = booksList.length === 0
     return (
-      <>
-        {emptyBooksList && this.renderNoDataView()}
-        {!emptyBooksList && (
-          <>
-            <ul className="book-items">
-              {booksList.map(eachBook => {
-                const {
-                  id,
-                  coverPic,
-                  title,
-                  authorName,
-                  rating,
-                  readStatus,
-                } = eachBook
-                return (
-                  <Link to={`/book-hub/books/${id}`} className="link">
-                    <li className="book-li-item" key={title}>
-                      <img src={coverPic} className="book-cover-pic" alt={id} />
-                      <div className="book-details-section">
-                        <h1 className="book-title">{title}</h1>
-                        <p className="book-author">{authorName}</p>
-                        <p className="book-rating">
-                          Avg Rating{' '}
-                          <span className="star-icon">
-                            <BsFillStarFill />
-                          </span>
-                          {rating}
-                        </p>
-                        <p className="book-status">
-                          <span className="book-status-text">
-                            {' '}
-                            Status : {readStatus}
-                          </span>
-                        </p>
-                      </div>
-                    </li>
-                  </Link>
-                )
-              })}
-            </ul>
-            <Footer />
-          </>
-        )}
-      </>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const textColor = isDarkTheme
+            ? 'dark-theme-shelf-text-color'
+            : 'light-theme-shelf-text-color'
+          const headingColor = isDarkTheme
+            ? 'dark-theme-shelf-heading-color'
+            : 'light-theme-shelf-heading-color'
+          return (
+            <>
+              {emptyBooksList && this.renderNoDataView()}
+              {!emptyBooksList && (
+                <>
+                  <ul className="book-items">
+                    {booksList.map(eachBook => {
+                      const {
+                        id,
+                        coverPic,
+                        title,
+                        authorName,
+                        rating,
+                        readStatus,
+                      } = eachBook
+                      return (
+                        <Link to={`/book-hub/books/${id}`} className="link">
+                          <li className="book-li-item" key={title}>
+                            <img
+                              src={coverPic}
+                              className="book-cover-pic"
+                              alt={id}
+                            />
+                            <div className="book-details-section">
+                              <h1 className={`book-title ${headingColor}`}>
+                                {title}
+                              </h1>
+                              <p className={`book-author ${textColor}`}>
+                                {authorName}
+                              </p>
+                              <p className={`book-rating ${textColor}`}>
+                                Avg Rating{' '}
+                                <span className="star-icon">
+                                  <BsFillStarFill />
+                                </span>
+                                {rating}
+                              </p>
+                              <p className={`book-status ${textColor}`}>
+                                Status :
+                                <span className="book-status-text">
+                                  {' '}
+                                  {readStatus}
+                                </span>
+                              </p>
+                            </div>
+                          </li>
+                        </Link>
+                      )
+                    })}
+                  </ul>
+                  <Footer />
+                </>
+              )}
+            </>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 
@@ -211,9 +233,29 @@ class BookShelves extends Component {
     return (
       <ThemeContext.Consumer>
         {values => {
-          const {idDarkTheme} = values
+          const {isDarkTheme} = values
+          const navLinksBgColor = isDarkTheme
+            ? 'dark-theme-bg-color'
+            : 'light-theme-bg-color'
+          const bgColor = isDarkTheme
+            ? 'dark-theme-shelf-bg-color'
+            : 'light-theme-shelf-bg-color'
+
+          const headingColor = isDarkTheme
+            ? 'dark-theme-shelf-heading-color'
+            : 'light-theme-shelf-heading-color'
+
+          const toggleBookShelfButton = ({value, label}) => {
+            this.setState(
+              {
+                bookShelfButton: label,
+                bookShelfValue: value,
+              },
+              this.getBooksData,
+            )
+          }
           return (
-            <div className="shelf-bg-container">
+            <div className={`shelf-bg-container ${bgColor}`}>
               <Header />
               <div className="bookshelves-main-container">
                 <div className="book-shelves-buttons-section">
@@ -233,8 +275,10 @@ class BookShelves extends Component {
                       <BiSearch size={20} />
                     </button>
                   </div>
-                  <div className="book-status-buttons-sub-div">
-                    <h1 className="head-text">BookShelves</h1>
+                  <div
+                    className={`book-status-buttons-sub-div ${navLinksBgColor}`}
+                  >
+                    <h1 className={`head-text ${headingColor}`}>BookShelves</h1>
                     <ul className="book-status-buttons-list">
                       {bookshelvesButtonsList.map(eachType => {
                         const {id, value, label} = eachType
@@ -245,16 +289,10 @@ class BookShelves extends Component {
                               className={
                                 bookShelfButton === label
                                   ? 'active-shelf-button'
-                                  : 'shelf-button'
+                                  : `shelf-button `
                               }
                               onClick={() => {
-                                this.setState(
-                                  {
-                                    bookShelfButton: label,
-                                    bookShelfValue: value,
-                                  },
-                                  this.getBooksData,
-                                )
+                                toggleBookShelfButton({value, label})
                               }}
                             >
                               {label}
@@ -267,7 +305,9 @@ class BookShelves extends Component {
                 </div>
                 <div className="books-display-section">
                   <div className="books-display-info-div">
-                    <h1 className="head-text">{bookShelfButton} Books</h1>
+                    <h1 className={`head-text ${headingColor}`}>
+                      {bookShelfButton} Books
+                    </h1>
                     <div className="lg-device-search-div">
                       <input
                         className="search-input"

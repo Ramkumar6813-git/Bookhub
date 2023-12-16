@@ -2,13 +2,24 @@
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
+}
+.dark-theme-bg-color {
+  background-color: #fff;
+}
+.light-theme-bg-color {
+  background-color: #3b3d3b;
+}
+.dark-theme-text-color {
   color: #64748b;
 }
+.light-theme-text-color {
+  color: #f9f9e7;
+}
+
 .nav-bar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
   position: fixed;
   width: 100vw;
   top: 0;
@@ -39,10 +50,6 @@
   }
 }
 
-.menu-bar-icon {
-  height: 20px;
-  width: 20px;
-}
 .lg-device-nav-links {
   display: flex;
   justify-content: space-around;
@@ -78,7 +85,6 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background-color: #ffffff;
 }
 @media screen and (min-width: 768px) {
   .sm-device-nav-links {

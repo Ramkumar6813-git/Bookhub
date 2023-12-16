@@ -1,11 +1,30 @@
 .book-details-bg-container {
+  width: 100%;
+  min-height: 80vh;
+  padding-bottom: 20px;
+}
+
+.dark-theme-book-bg-color {
   background-color: #f5f7fa;
-  width: 100vw;
-  min-height: 88vh;
+}
+.light-theme-book-bg-color {
+  background-color: #121212;
+}
+.dark-theme-book-text-color {
+  color: #64748b;
+}
+.light-theme-book-text-color {
+  color: #f9f9e7;
+}
+.light-theme-book-heading-color {
+  color: #fff;
+}
+.dark-theme-book-heading-color {
+  color: #1e293b;
 }
 .book-details-container {
-  margin-top: 70px;
-  min-height: 70vh;
+  margin-top: 60px;
+  min-height: 65vh;
   padding: 20px;
 }
 @media screen and (min-width: 768px) {
@@ -98,7 +117,8 @@
 }
 .info {
   font-size: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  line-height: 25px;
 }
 .loader-div {
   display: flex;

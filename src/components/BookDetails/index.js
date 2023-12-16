@@ -83,32 +83,52 @@ class BookDetails extends Component {
       aboutBook,
     } = bookDetails
     return (
-      <>
-        <div className="book-main-details-section">
-          <img src={coverPic} className="book-pic" alt={title} />
-          <div className="book-main-details-div ">
-            <h1 className="book-title-text">{title}</h1>
-            <p className="book-author-name text-margins">{authorName}</p>
-            <p className="book-ratings text-margins">
-              Avg Rating{' '}
-              <span className="star-icon">
-                <BsFillStarFill />
-              </span>{' '}
-              {rating}
-            </p>
-            <p className="book-status text-margins">
-              Status :<span className="book-status-text"> {readStatus}</span>
-            </p>
-          </div>
-        </div>
-        <hr className="line-break" />
-        <div className="sub-details-section ">
-          <h1 className="about-heading head-text-size">About Author</h1>
-          <p className="info">{aboutAuthor}</p>
-          <h1 className="about-heading head-text-size">About Book</h1>
-          <p className="info">{aboutBook}</p>
-        </div>
-      </>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const textColor = isDarkTheme
+            ? 'dark-theme-book-text-color'
+            : 'light-theme-book-text-color'
+          const headingColor = isDarkTheme
+            ? 'dark-theme-book-heading-color'
+            : 'light-theme-book-heading-color'
+          return (
+            <>
+              <div className="book-main-details-section">
+                <img src={coverPic} className="book-pic" alt={title} />
+                <div className="book-main-details-div ">
+                  <h1 className={`book-title-text ${headingColor}`}>{title}</h1>
+                  <p className={`book-author-name text-margins ${textColor}`}>
+                    {authorName}
+                  </p>
+                  <p className={`book-ratings text-margins ${textColor}`}>
+                    Avg Rating{' '}
+                    <span className="star-icon">
+                      <BsFillStarFill />
+                    </span>{' '}
+                    {rating}
+                  </p>
+                  <p className={`book-status text-margins ${textColor}`}>
+                    Status :
+                    <span className="book-status-text"> {readStatus}</span>
+                  </p>
+                </div>
+              </div>
+              <hr className="line-break" />
+              <div className="sub-details-section ">
+                <h1 className={`about-heading head-text-size ${headingColor}`}>
+                  About Author
+                </h1>
+                <p className={`info ${textColor}`}>{aboutAuthor}</p>
+                <h1 className={`about-heading head-text-size ${headingColor}`}>
+                  About Book
+                </h1>
+                <p className={`info ${textColor}`}>{aboutBook}</p>
+              </div>
+            </>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 
@@ -153,8 +173,12 @@ class BookDetails extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDarkTheme} = value
+          const bgColor = isDarkTheme
+            ? 'dark-theme-book-bg-color'
+            : 'light-theme-book-bg-color'
+
           return (
-            <div className="book-details-bg-container">
+            <div className={`book-details-bg-container ${bgColor}`}>
               <Header />
               <div className="book-details-container">
                 {this.renderBookDetailsBasedOnApi()}

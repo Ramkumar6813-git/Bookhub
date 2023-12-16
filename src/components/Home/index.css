@@ -1,13 +1,30 @@
+.home-bg-div {
+  height: 100vh;
+}
 .link {
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   color: #64748b;
 }
-.home-container {
+
+.dark-theme-home-bg-color {
   background-color: #f5f7fa;
-  background-size: cover;
-  min-height: 90vh;
+}
+.light-theme-home-bg-color {
+  background-color: #121212;
+}
+.dark-theme-text-color {
+  color: #64748b;
+}
+.light-theme-text-color {
+  color: #f9f9e7;
+}
+.light-theme-heading-color {
+  color: #fff;
+}
+.dark-theme-heading-color {
+  color: #1e293b;
 }
 @media screen and (min-width: 768px) {
   .home-container {
@@ -25,7 +42,6 @@
   }
 }
 .heading {
-  color: #1e293b;
   font-size: 20px;
   margin-bottom: 10px;
 }
@@ -35,16 +51,15 @@
   }
 }
 .description {
-  font-size: 16px;
+  font-size: 15px;
   margin-bottom: 10px;
   line-height: 23px;
-  color: #475569;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {
   .description {
-    font-size: 17px;
-    line-height: 25px;
+    font-size: 16px;
+    line-height: 28px;
     padding-bottom: 0px;
     margin-bottom: 8px;
   }
@@ -65,10 +80,14 @@
 }
 
 .slider-div {
-  background-color: #fff;
   padding: 10px 15px;
 }
-
+.slider-dark-theme-bg-color {
+  background-color: #ffffff;
+}
+.slider-dark-light-bg-color {
+  background-color: #3b3d3b;
+}
 @media screen and (min-width: 768px) {
   .slider-div {
     border-radius: 10px;
@@ -88,7 +107,6 @@
 }
 .slider-head-text {
   font-size: 20px;
-  color: #1e293b;
 }
 .lg-device-find-button {
   padding: 9px 16px;
@@ -125,7 +143,7 @@
 
 @media screen and (min-width: 768px) {
   .slider-item {
-    width: 130px;
+    width: 150px;
   }
 }
 .trending-book-cover-pic {
@@ -140,21 +158,19 @@
   }
 }
 .trending-book-title {
-  font-size: 13px;
+  font-size: 16px;
   margin-top: 16px;
   padding-bottom: 5px;
-  color: #334155;
   font-weight: 600;
 }
 .trending-book-author {
-  font-size: 12px;
-  color: #475569;
+  font-size: 13px;
   font-weight: 500;
 }
 
 .slick-prev:before,
 .slick-next:before {
-  color: black;
+  color: #a8a4a4;
 }
 
 .home-loader-container {
