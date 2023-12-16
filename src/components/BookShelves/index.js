@@ -179,12 +179,13 @@ class BookShelves extends Component {
   }
 
   changeSearchInputValue = e => {
-    this.setState(
-      {
-        searchInputValue: e.target.value,
-      },
-      this.getBooksData,
-    )
+    this.setState({
+      searchInputValue: e.target.value,
+    })
+  }
+
+  getBookShelfData = () => {
+    this.getBooksData()
   }
 
   renderNoDataView = () => {
@@ -197,7 +198,9 @@ class BookShelves extends Component {
           className="no-data-img"
         />
         <p className="no-data-text">
-          Your search for {searchInputValue} did not find any matches.
+          Your search for{' '}
+          <span className="search-value">{searchInputValue}</span> did not find
+          any matches.
         </p>
       </div>
     )
@@ -213,7 +216,7 @@ class BookShelves extends Component {
             <div className="shelf-bg-container">
               <Header />
               <div className="bookshelves-main-container">
-                <div className="book-status-buttons-section">
+                <div className="book-shelves-buttons-section">
                   <div className="sm-device-search-div">
                     <input
                       type="search"
@@ -225,8 +228,9 @@ class BookShelves extends Component {
                       type="button"
                       className="search-button"
                       testid="searchButton"
+                      onClick={this.getBookShelfData}
                     >
-                      <BiSearch size={18} />
+                      <BiSearch size={20} />
                     </button>
                   </div>
                   <div className="book-status-buttons-sub-div">
@@ -271,8 +275,12 @@ class BookShelves extends Component {
                         placeholder="Search"
                         onChange={this.changeSearchInputValue}
                       />
-                      <button type="button" className="search-button">
-                        <BiSearch size={18} />
+                      <button
+                        type="button"
+                        className="search-button"
+                        onClick={this.getBookShelfData}
+                      >
+                        <BiSearch size={20} />
                       </button>
                     </div>
                   </div>

@@ -1,6 +1,7 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {MdCancel} from 'react-icons/md'
+import Cookies from 'js-cookie'
 import {FiSun} from 'react-icons/fi'
 import ThemeContext from '../../context/ThemeContext'
 import './index.css'
@@ -14,6 +15,12 @@ class Header extends Component {
     this.setState(prev => ({
       showNavLinks: !prev.showNavLinks,
     }))
+  }
+
+  logoutUser = () => {
+    Cookies.remove('jwt_token')
+    const {history} = this.props
+    history.replace('/login')
   }
 
   render() {
@@ -60,7 +67,11 @@ class Header extends Component {
                   >
                     <FiSun size={30} />
                   </button>
-                  <button type="button" className="logout-btn">
+                  <button
+                    type="button"
+                    className="logout-btn"
+                    onClick={this.logoutUser}
+                  >
                     Logout
                   </button>
                 </div>
@@ -80,7 +91,11 @@ class Header extends Component {
                   >
                     <FiSun size={25} />
                   </button>
-                  <button type="button" className="logout-btn">
+                  <button
+                    type="button"
+                    className="logout-btn"
+                    onClick={this.logoutUser}
+                  >
                     Logout
                   </button>
                   <button
@@ -100,4 +115,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)
