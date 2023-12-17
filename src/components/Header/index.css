@@ -50,14 +50,16 @@
   }
 }
 
-.lg-device-nav-links {
+.lg-device-nav-links-list {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 330px;
+  list-style-type: none;
+  padding: 0;
 }
 @media screen and (max-width: 768px) {
-  .lg-device-nav-links {
+  .lg-device-nav-links-list {
     display: none;
   }
 }
@@ -76,18 +78,20 @@
   background-color: #0284c7;
 }
 
-.sm-device-nav-links {
+.sm-device-nav-links-list {
   position: absolute;
-  top: 50px;
+  top: 50;
   z-index: 2;
   padding: 10px 25px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  list-style-type: none;
+  padding: 20px;
 }
 @media screen and (min-width: 768px) {
-  .sm-device-nav-links {
+  .sm-device-nav-links-list {
     display: none;
   }
 }

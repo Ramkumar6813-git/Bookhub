@@ -1,8 +1,7 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
-import {BiSearch} from 'react-icons/bi'
-import {BsFillStarFill} from 'react-icons/bs'
+import {BsFillStarFill, BsSearch} from 'react-icons/bs'
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
@@ -126,12 +125,12 @@ class BookShelves extends Component {
                         readStatus,
                       } = eachBook
                       return (
-                        <Link to={`/book-hub/books/${id}`} className="link">
-                          <li className="book-li-item" key={title}>
+                        <Link to={`/books/${id}`} className="link" key={id}>
+                          <li className="book-li-item" key={id}>
                             <img
                               src={coverPic}
                               className="book-cover-pic"
-                              alt={id}
+                              alt={title}
                             />
                             <div className="book-details-section">
                               <h1 className={`book-title ${headingColor}`}>
@@ -170,6 +169,10 @@ class BookShelves extends Component {
     )
   }
 
+  getBooksApi = () => {
+    this.getBooksData()
+  }
+
   renderFailureView = () => (
     <div className="failure-container">
       <img
@@ -180,7 +183,11 @@ class BookShelves extends Component {
       <p className="failure-info-text">
         Something went wrong. Please try again
       </p>
-      <button type="button" className="try-again-button">
+      <button
+        type="button"
+        className="try-again-button"
+        onClick={this.getBooksApi}
+      >
         Try Again
       </button>
     </div>
@@ -213,30 +220,28 @@ class BookShelves extends Component {
   renderNoDataView = () => {
     const {searchInputValue} = this.state
     return (
-      <div className="no-data-container">
+      <div className="no-book-container">
         <img
           src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702623533/Notfoundwed.png"
-          alt="no-data"
-          className="no-data-img"
+          alt="no books"
+          className="no-book-img"
         />
-        <p className="no-data-text">
-          Your search for{' '}
-          <span className="search-value">{searchInputValue}</span> did not find
-          any matches.
+        <p className="no-book-text">
+          Your search for {searchInputValue} did not find any matches.
         </p>
       </div>
     )
   }
 
   render() {
-    const {bookShelfButton} = this.state
+    const {bookShelfButton, searchInputValue} = this.state
     return (
       <ThemeContext.Consumer>
         {values => {
           const {isDarkTheme} = values
           const navLinksBgColor = isDarkTheme
-            ? 'dark-theme-bg-color'
-            : 'light-theme-bg-color'
+            ? 'dark-theme-nav-bg-color'
+            : 'light-theme-nav-bg-color'
           const bgColor = isDarkTheme
             ? 'dark-theme-shelf-bg-color'
             : 'light-theme-shelf-bg-color'
@@ -265,6 +270,7 @@ class BookShelves extends Component {
                       className="search-input"
                       placeholder="Search"
                       onChange={this.changeSearchInputValue}
+                      value={searchInputValue}
                     />
                     <button
                       type="button"
@@ -272,7 +278,7 @@ class BookShelves extends Component {
                       testid="searchButton"
                       onClick={this.getBookShelfData}
                     >
-                      <BiSearch size={20} />
+                      <BsSearch size={15} />
                     </button>
                   </div>
                   <div
@@ -314,13 +320,14 @@ class BookShelves extends Component {
                         type="search"
                         placeholder="Search"
                         onChange={this.changeSearchInputValue}
+                        value={searchInputValue}
                       />
                       <button
                         type="button"
                         className="search-button"
                         onClick={this.getBookShelfData}
                       >
-                        <BiSearch size={20} />
+                        <BsSearch size={15} />
                       </button>
                     </div>
                   </div>

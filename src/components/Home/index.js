@@ -75,7 +75,7 @@ class Home extends Component {
       dots: false,
       infinite: false,
       speed: 500,
-      slidesToShow: 5,
+      slidesToShow: 4,
       slidesToScroll: 1,
       responsive: [
         {
@@ -116,16 +116,16 @@ class Home extends Component {
               {topRatedBooksData.map(eachBookData => {
                 const {id, coverPic, title, authorName} = eachBookData
                 return (
-                  <Link to={`/book-hub/books/${id}`} className="link">
+                  <Link to={`/books/${id}`} className="link" key={id}>
                     <li className="slider-item" key={id}>
                       <img
                         src={coverPic}
                         className="trending-book-cover-pic"
-                        alt="ss"
+                        alt={title}
                       />
-                      <p className={`trending-book-title ${headingColor}`}>
+                      <h1 className={`trending-book-title ${headingColor}`}>
                         {title}
-                      </p>
+                      </h1>
                       <p className={`trending-book-author ${textColor}`}>
                         {authorName}
                       </p>

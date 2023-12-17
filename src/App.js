@@ -41,14 +41,10 @@ class App extends Component {
               toggleTheme={this.toggleTheme}
             />
             <ProtectedRoute exact path="/" component={Home} />
-            <ProtectedRoute
-              exact
-              path="/book-hub/books/:id"
-              component={BookDetails}
-            />
+            <ProtectedRoute exact path="/books/:id" component={BookDetails} />
             <ProtectedRoute exact path="/shelf" component={BookShelves} />
-            <ProtectedRoute component={PageNotFound} />
-            <Redirect to="/not-found" component={PageNotFound} />
+            <Route path="/not-found" component={PageNotFound} />
+            <Redirect to="/not-found" />
           </Switch>
         </BrowserRouter>
       </ThemeContext.Provider>

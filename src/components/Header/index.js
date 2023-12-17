@@ -18,8 +18,8 @@ class Header extends Component {
   }
 
   logoutUser = () => {
-    Cookies.remove('jwt_token')
     const {history} = this.props
+    Cookies.remove('jwt_token')
     history.replace('/login')
   }
 
@@ -59,12 +59,12 @@ class Header extends Component {
                 >
                   <MdMenu size={30} className={`menu-bar-icon ${textColor}`} />
                 </button>
-                <div className="lg-device-nav-links">
+                <ul className="lg-device-nav-links-list">
                   <Link to="/" className="link">
-                    <p className={` ${textColor}`}>Home</p>
+                    <li className={` ${textColor}`}>Home</li>
                   </Link>
                   <Link to="/shelf" className="link">
-                    <p className={`${textColor}`}>BookShelves</p>
+                    <li className={`${textColor}`}>BookShelves</li>
                   </Link>
                   <button
                     type="button"
@@ -80,15 +80,15 @@ class Header extends Component {
                   >
                     Logout
                   </button>
-                </div>
+                </ul>
               </nav>
               {showNavLinks && (
-                <div className={`sm-device-nav-links ${bgColor}`}>
+                <ul className={`sm-device-nav-links-list ${bgColor}`}>
                   <Link to="/" className="link">
-                    <p className={`${textColor}`}>Home</p>
+                    <li className={`${textColor}`}>Home</li>
                   </Link>
                   <Link to="/shelf" className="link">
-                    <p className={`${textColor}`}>BookShelves</p>
+                    <li className={`${textColor}`}>BookShelves</li>
                   </Link>
                   <button
                     type="button"
@@ -111,7 +111,7 @@ class Header extends Component {
                   >
                     <MdCancel size={30} />
                   </button>
-                </div>
+                </ul>
               )}
             </div>
           )

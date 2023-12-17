@@ -66,7 +66,7 @@ class BookDetails extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-div">
+    <div className="loader-div" testid="loader">
       <Loader type="TailSpin" color="#0284C7" height={35} width={35} />
     </div>
   )
@@ -101,16 +101,11 @@ class BookDetails extends Component {
                   <p className={`book-author-name text-margins ${textColor}`}>
                     {authorName}
                   </p>
-                  <p className={`book-ratings text-margins ${textColor}`}>
-                    Avg Rating{' '}
-                    <span className="star-icon">
-                      <BsFillStarFill />
-                    </span>{' '}
-                    {rating}
+                  <p className={`book-rating-text text-margins ${textColor}`}>
+                    Avg Rating <BsFillStarFill /> {rating}
                   </p>
-                  <p className={`book-status text-margins ${textColor}`}>
-                    Status :
-                    <span className="book-status-text"> {readStatus}</span>
+                  <p className={`book-status-text text-margins ${textColor}`}>
+                    Status: {readStatus}
                   </p>
                 </div>
               </div>
@@ -141,7 +136,7 @@ class BookDetails extends Component {
       <img
         src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
         className="failure-img"
-        alt="failure"
+        alt="failure view"
       />
       <p className="failure-text">Something went wrong. Please try again</p>
       <button

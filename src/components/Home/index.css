@@ -130,7 +130,12 @@
   height: 200px;
   margin-bottom: 30px;
 }
-
+.slider-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .slider-item {
   width: 140px;
   display: flex;

@@ -24,7 +24,7 @@ const Footer = () => (
               <FaYoutube size={20} />
             </li>
           </ul>
-          <p className="contact-us-text">Contact Us</p>
+          <p className="contact-us-text">Contact us</p>
         </div>
       )
     }}

@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
@@ -15,12 +16,13 @@ const PageNotFound = () => (
             />
             <h1 className="not-found-text">Page Not Found</h1>
             <p className="not-found-description">
-              We are sorry, the page you requested could not be found. Please go
-              back to the homepage.
+              we are sorry, the page you requested could not be found
             </p>
-            <button type="button" className="go-to-home-button">
-              Go Back To Home
-            </button>
+            <Link to="/">
+              <button type="button" className="go-to-home-button">
+                Go Back to Home
+              </button>
+            </Link>
           </div>
         </div>
       )

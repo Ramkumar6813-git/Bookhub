@@ -1,9 +1,9 @@
 .book-details-bg-container {
   width: 100%;
-  min-height: 80vh;
+  background-size: cover;
+  min-height: 100vh;
   padding-bottom: 20px;
 }
-
 .dark-theme-book-bg-color {
   background-color: #f5f7fa;
 }
@@ -29,7 +29,7 @@
 }
 @media screen and (min-width: 768px) {
   .book-details-container {
-    padding: 10px 7vw;
+    padding: 20px 7vw;
   }
 }
 .book-main-details-section {
@@ -88,14 +88,15 @@
   }
 }
 .book-author-name {
-  font-size: 16px;
+  font-size: 18px;
 }
-.book-ratings {
-  font-size: 15px;
+.book-rating-text {
+  font-size: 18px;
 }
 
 .book-status-text {
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .line-break {
@@ -124,7 +125,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65vh;
+  min-height: 70vh;
 }
 
 .failure-div {
