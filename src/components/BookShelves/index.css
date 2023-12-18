@@ -85,11 +85,10 @@
 }
 @media all and (max-width: 768px) {
   .book-status-buttons-sub-div {
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: transparent;
   }
 }
-
 @media screen and (min-width: 768px) {
   .book-status-buttons-sub-div {
     width: 20vw;
@@ -101,7 +100,7 @@
 }
 .head-text {
   font-size: 18px;
-  margin: 10px 0px;
+  margin: 15px 0px;
 }
 .book-status-buttons-list {
   list-style-type: none;
