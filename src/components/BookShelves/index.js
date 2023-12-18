@@ -129,7 +129,7 @@ class BookShelves extends Component {
                           <li className="book-li-item" key={id}>
                             <img
                               src={coverPic}
-                              className="book-cover-pic"
+                              className="book-shelf-cover-pic"
                               alt={title}
                             />
                             <div className="book-details-section">
@@ -148,10 +148,10 @@ class BookShelves extends Component {
                               </p>
                               <p className={`book-status ${textColor}`}>
                                 Status :
-                                <span className="book-status-text">
+                                <p className="book-shelf-status-text">
                                   {' '}
                                   {readStatus}
-                                </span>
+                                </p>
                               </p>
                             </div>
                           </li>

@@ -1,7 +1,6 @@
 .book-details-bg-container {
   width: 100%;
   background-size: cover;
-  min-height: 100vh;
   padding-bottom: 20px;
 }
 .dark-theme-book-bg-color {
@@ -14,7 +13,7 @@
   color: #64748b;
 }
 .light-theme-book-text-color {
-  color: #f9f9e7;
+  color: #c0c0bd;
 }
 .light-theme-book-heading-color {
   color: #fff;
@@ -23,13 +22,12 @@
   color: #1e293b;
 }
 .book-details-container {
-  margin-top: 60px;
   min-height: 65vh;
   padding: 20px;
 }
 @media screen and (min-width: 768px) {
   .book-details-container {
-    padding: 20px 7vw;
+    padding: 10px 7vw;
   }
 }
 .book-main-details-section {

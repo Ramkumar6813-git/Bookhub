@@ -43,8 +43,8 @@ class Header extends Component {
           }
 
           return (
-            <div className="header">
-              <nav className={`nav-bar-container ${bgColor}`}>
+            <div className={` ${bgColor}`}>
+              <nav className="nav-bar-container">
                 <Link to="/" className="link">
                   <img
                     className="website-logo"
