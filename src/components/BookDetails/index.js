@@ -132,21 +132,33 @@ class BookDetails extends Component {
   }
 
   renderFailureView = () => (
-    <div className="failure-div">
-      <img
-        src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
-        className="failure-img"
-        alt="failure view"
-      />
-      <p className="failure-text">Something went wrong. Please try again</p>
-      <button
-        type="button"
-        className="try-again-button"
-        onClick={this.onClickGetBookDetails}
-      >
-        Try Again
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const textColor = isDarkTheme
+          ? 'dark-theme-book-text-color'
+          : 'light-theme-book-text-color'
+        return (
+          <div className="failure-div">
+            <img
+              src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
+              className="failure-img"
+              alt="failure view"
+            />
+            <p className={`failure-text ${textColor}`}>
+              Something went wrong. Please try again
+            </p>
+            <button
+              type="button"
+              className="try-again-button"
+              onClick={this.onClickGetBookDetails}
+            >
+              Try Again
+            </button>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   renderBookDetailsBasedOnApi = () => {

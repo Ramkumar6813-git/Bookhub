@@ -174,23 +174,33 @@ class BookShelves extends Component {
   }
 
   renderFailureView = () => (
-    <div className="failure-container">
-      <img
-        src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
-        className="failure-image"
-        alt="failure view"
-      />
-      <p className="failure-info-text">
-        Something went wrong. Please try again
-      </p>
-      <button
-        type="button"
-        className="try-again-button"
-        onClick={this.getBooksApi}
-      >
-        Try Again
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const textColor = isDarkTheme
+          ? 'dark-theme-shelf-text-color'
+          : 'light-theme-shelf-text-color'
+        return (
+          <div className="failure-container">
+            <img
+              src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
+              className="failure-image"
+              alt="failure view"
+            />
+            <p className={`failure-info-text ${textColor}`}>
+              Something went wrong. Please try again
+            </p>
+            <button
+              type="button"
+              className="try-again-button"
+              onClick={this.getBooksApi}
+            >
+              Try Again
+            </button>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   renderBooksListBasedOnApiStatus = () => {
@@ -220,16 +230,26 @@ class BookShelves extends Component {
   renderNoDataView = () => {
     const {searchInputValue} = this.state
     return (
-      <div className="no-book-container">
-        <img
-          src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702623533/Notfoundwed.png"
-          alt="no books"
-          className="no-book-img"
-        />
-        <p className="no-book-text">
-          Your search for {searchInputValue} did not find any matches.
-        </p>
-      </div>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const textColor = isDarkTheme
+            ? 'dark-theme-shelf-text-color'
+            : 'light-theme-shelf-text-color'
+          return (
+            <div className="no-book-container">
+              <img
+                src="https://res.cloudinary.com/dtkpydgtx/image/upload/v1702623533/Notfoundwed.png"
+                alt="no books"
+                className="no-book-img"
+              />
+              <p className={`no-book-text ${textColor}`}>
+                Your search for {searchInputValue} did not find any matches.
+              </p>
+            </div>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 
@@ -249,6 +269,9 @@ class BookShelves extends Component {
           const headingColor = isDarkTheme
             ? 'dark-theme-shelf-heading-color'
             : 'light-theme-shelf-heading-color'
+          const inputColor = isDarkTheme
+            ? 'dark-theme-input-color '
+            : 'light-theme-input-color '
 
           const toggleBookShelfButton = ({value, label}) => {
             this.setState(
@@ -267,7 +290,7 @@ class BookShelves extends Component {
                   <div className="sm-device-search-div">
                     <input
                       type="search"
-                      className="search-input"
+                      className={`search-input ${inputColor}`}
                       placeholder="Search"
                       onChange={this.changeSearchInputValue}
                       value={searchInputValue}
@@ -316,7 +339,7 @@ class BookShelves extends Component {
                     </h1>
                     <div className="lg-device-search-div">
                       <input
-                        className="search-input"
+                        className={`search-input ${inputColor}`}
                         type="search"
                         placeholder="Search"
                         onChange={this.changeSearchInputValue}

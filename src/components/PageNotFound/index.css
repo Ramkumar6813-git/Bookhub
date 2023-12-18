@@ -6,6 +6,24 @@
   text-align: center;
   height: 100vh;
 }
+.dark-theme-not-found-bg-color {
+  background-color: #f5f7fa;
+}
+.light-theme-not-found--bg-color {
+  background-color: #121212;
+}
+.dark-theme-text-color {
+  color: #64748b;
+}
+.light-theme-text-color {
+  color: #f9f9e7;
+}
+.light-theme-heading-color {
+  color: #fff;
+}
+.dark-theme-heading-color {
+  color: #1e293b;
+}
 .page-not-found-div {
   width: 350px;
 }
@@ -21,12 +39,10 @@
 .not-found-text {
   margin-bottom: 10px;
   font-size: 25px;
-  color: #334155;
 }
 .not-found-description {
   margin-bottom: 20px;
   line-height: 25px;
-  color: #475569;
 }
 .go-to-home-button {
   padding: 9px 18px;

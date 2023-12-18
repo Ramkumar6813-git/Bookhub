@@ -145,26 +145,36 @@ class Home extends Component {
   }
 
   renderFailureView = () => (
-    <div className="home-failure-container">
-      <img
-        src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
-        className="home-failure-image"
-        alt="failure view"
-      />
-      <p className="home-failure-info-text">
-        Something went wrong. Please try again
-      </p>
-      <button
-        type="button"
-        className="try-again-button"
-        onClick={this.getBookData}
-      >
-        Try Again
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const textColor = isDarkTheme
+          ? 'dark-theme-text-color'
+          : 'light-theme-text-color'
+        return (
+          <div className="home-failure-container">
+            <img
+              src="https://res.cloudinary.com/dovk61e0h/image/upload/v1663608572/Bookhub/Group_7522Failure_Image_ykvhlm_gwy5rw.png"
+              className="home-failure-image"
+              alt="failure view"
+            />
+            <p className={`home-failure-info-text ${textColor}`}>
+              Something went wrong. Please try again
+            </p>
+            <button
+              type="button"
+              className="try-again-button"
+              onClick={this.getBookData}
+            >
+              Try Again
+            </button>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
-  renderBooksBasedOnApiStatus = () => {
+  renderTopRatedBooksBasedOnApiStatus = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiConstants.loading:
@@ -227,7 +237,7 @@ class Home extends Component {
                     </Link>
                   </div>
                   <div className="slider-main-section">
-                    {this.renderBooksBasedOnApiStatus()}
+                    {this.renderTopRatedBooksBasedOnApiStatus()}
                   </div>
                 </div>
                 <Footer />

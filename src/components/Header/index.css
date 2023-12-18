@@ -89,6 +89,8 @@
   width: 100%;
   list-style-type: none;
   padding: 20px;
+  margin-top: 15px;
+  position: fixed;
 }
 @media screen and (min-width: 768px) {
   .sm-device-nav-links-list {

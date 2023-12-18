@@ -5,14 +5,27 @@
   align-items: center;
   width: 100%;
   margin-top: 30px;
+  background-color: transparent;
 }
 .social-media-links {
   list-style-type: none;
   display: flex;
   flex-direction: row;
 }
+.dark-theme-icon-color {
+  color: #1e293b;
+}
+.light-theme-icon-color {
+  color: #f5f7fa;
+}
 .social-media-icon {
   margin: 0 10px;
+}
+.dark-theme-contact-uc-text-color {
+  color: #4b4e53;
+}
+.light-theme-contact-us-color {
+  color: #f9f9e7;
 }
 .contact-us-text {
   font-size: 16px;

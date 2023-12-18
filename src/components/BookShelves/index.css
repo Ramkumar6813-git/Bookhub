@@ -54,17 +54,22 @@
   width: 70%;
   max-width: 350px;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: transparent;
   margin-top: 10px;
+}
+.dark-theme-input-color {
+  color: #1e293b;
+}
+.light-theme-input-color {
+  color: #cbd5e1;
 }
 .search-input {
   outline: none;
   border: none;
-  border-radius: 20px;
   width: 100%;
   padding: 3px 15px;
   font-size: 15px;
-  color: #94a3b8;
+  background-color: transparent;
 }
 .search-button {
   padding: 7px 23px;
@@ -73,8 +78,8 @@
   align-items: center;
   text-align: center;
   border: none;
-  border-radius: 6px;
-  color: #94a3b8;
+  color: #1e293b;
+  background-color: #cbd5e1;
 }
 @media screen and (min-width: 768px) {
   .sm-device-search-div {
@@ -162,6 +167,7 @@
 
 .books-display-section {
   width: 100%;
+  min-height: 90vh;
 }
 @media screen and (min-width: 768px) {
   .books-display-section {
@@ -188,7 +194,7 @@
   width: 50%;
   max-width: 300px;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: transparent;
 }
 @media screen and (max-width: 768px) {
   .lg-device-search-div {
@@ -248,7 +254,7 @@
   font-weight: 500;
 }
 .book-rating {
-  font-size: 15px;
+  font-size: 14px;
   margin: 5px 0px;
   font-weight: 500;
 }
@@ -286,10 +292,11 @@
   justify-content: center;
   align-items: center;
   padding: 10px 0px;
+  margin-top: 50px;
 }
 @media screen and (min-width: 768px) {
   .failure-container {
-    height: 60vh;
+    height: 70vh;
   }
 }
 
@@ -306,6 +313,12 @@
 .failure-info-text {
   font-size: 15px;
   margin: 10px 0px;
+}
+.dark-theme-text-color {
+  color: #64748b;
+}
+.light-theme-text-color {
+  color: #f9f9e7;
 }
 @media screen and (min-width: 768px) {
   .failure-info-text {
@@ -336,5 +349,4 @@
 .no-book-text {
   font-size: 16px;
   font-weight: 500;
-  color: #475569;
 }
