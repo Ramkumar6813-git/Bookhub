@@ -101,16 +101,21 @@ class BookDetails extends Component {
                   <p className={`book-author-name text-margins ${textColor}`}>
                     {authorName}
                   </p>
-                  <p className={`book-rating-text text-margins ${textColor}`}>
-                    Avg Rating <BsFillStarFill /> {rating}
-                  </p>
-                  <p className={`book-status-text text-margins ${textColor}`}>
-                    Status: {readStatus}
-                  </p>
+                  <div className={`book-rating-div ${textColor}`}>
+                    <p className="book-rating-text text-margins">Avg Rating</p>
+                    <BsFillStarFill size={25} className="star-icon" />
+                    <p className="rating">{rating}</p>
+                  </div>
+                  <div className="book-status-div">
+                    <p className={`book-status-text text-margins ${textColor}`}>
+                      Status:
+                    </p>
+                    <p className="status">{readStatus}</p>
+                  </div>
                 </div>
               </div>
               <hr className="line-break" />
-              <div className="sub-details-section ">
+              <div className="sub-details-section">
                 <h1 className={`about-heading head-text-size ${headingColor}`}>
                   About Author
                 </h1>

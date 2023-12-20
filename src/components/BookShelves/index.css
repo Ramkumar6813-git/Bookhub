@@ -136,7 +136,7 @@
   border: 1px solid blue;
   margin: 0px 16px 15px 0px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
 }
 @media screen and (min-width: 768px) {
   .shelf-button {
@@ -152,7 +152,7 @@
     border: none;
     padding: 0;
     text-align: start;
-    font-size: 16px;
+    font-size: 18px;
     margin: 5px 0px;
     color: #0284c7;
     font-weight: 600;
@@ -207,7 +207,7 @@
   display: flex;
   justify-content: flex-start;
   margin: 0px 15px 20px 0px;
-  width: 280px;
+  width: 300px;
 }
 
 .book-shelf-cover-pic {
@@ -217,7 +217,8 @@
   border-radius: 8px;
 }
 .book-details-section {
-  width: 180px;
+  width: 220px;
+  padding: 10px 0px;
 }
 .book-title {
   font-size: 18px;
@@ -240,12 +241,18 @@
   text-align: center;
   color: #fbbf24;
 }
+.book-status-div {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
 .book-status {
   font-size: 14px;
 }
 .book-shelf-status-text {
   color: #0284c7;
-  font-size: 14px;
+  font-size: 15px;
+  margin-left: 3px;
   font-weight: 400;
 }
 

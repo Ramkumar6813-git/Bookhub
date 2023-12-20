@@ -146,13 +146,14 @@ class BookShelves extends Component {
                                 </span>
                                 {rating}
                               </p>
-                              <p className={`book-status ${textColor}`}>
-                                Status :
+                              <div className="book-status-div">
+                                <p className={`book-status ${textColor}`}>
+                                  Status :
+                                </p>
                                 <p className="book-shelf-status-text">
-                                  {' '}
                                   {readStatus}
                                 </p>
-                              </p>
+                              </div>
                             </div>
                           </li>
                         </Link>
